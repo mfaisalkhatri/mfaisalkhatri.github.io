@@ -7,10 +7,11 @@ layout: page
 
 I am Mohammad Faisal Khatri.
 
-QA Engineer, currently based in Mumbai, India, having more than a decade of experience working in Manual and Automation testing.
+QA Engineer, currently based in Mumbai, India, working with CrossAsyst Technologies Pvt. Ltd, having more than 12 of progressive experience in software testing methodologies, best practices in test automation and expertise in variety of test tools like Selenium WebDriver, Cucumber, TestNG, Appium, RestAssured and hands-on experience with CI/CD using Jenkins/Docker.
 
-Open for Freelancing and collaborations. 
-Seeking to be inspired, to envision the unlikely, to work hard for things that are worth it, and to be surrounded by those who bring out the best in me.
+My career started with Manual testing, after doing Manual testing for around 7+ years, I transitioned to Automation testing by self-learning the latest automation tools and technologies.
 
-I have substantial expertise in automated testing tools(Selenium WebDriver, Cucumber, TestNG, Maven, Appium).In-depth knowledge of SQL queries for database and API Testing. Practiced hand with CI/CD using Jenkins/Docker. 
-Quite good with programming languages such as Java, JavaScript.
+I am a passionate learner and keen to learn new technologies. I have achieved project objectives through passion, commitment and expertise and well experienced in complex testing efforts on projects with multiple integration points and aggressive deadlines.
+
+# Need my help?
+If you feel I can help you in any way then feel free to connect with me here on this site via chat window or Inbox  me on Facebook/Twitter/LinkedIn.
