@@ -1,0 +1,15 @@
+.archive {
+  text-align: center;
+  flex: 1;
+}
+.archive-list-item {
+  height: 24px;
+  line-height: 24px;
+  margin-top: 15px;
+}
+.archive-list-item .archive-article-title {
+  float: left;
+}
+.archive-list-item .archive-article-time {
+  float: right;
+}

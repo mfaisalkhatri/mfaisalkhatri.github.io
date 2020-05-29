@@ -1,0 +1,92 @@
+#layout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+#layout-menu {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+}
+#layout-menu a,
+#layout-menu div {
+  flex: 1;
+}
+#layout-menu a {
+  color: #000;
+  text-decoration: none;
+}
+#layout-menu a:visited {
+  color: #000;
+}
+#layout-menu a:hover {
+  color: #808080;
+}
+.other-page a {
+  margin: 0 10px;
+  font-size: 1.125em;
+}
+#content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
+  margin: 20px auto;
+  width: 50%;
+  font-size: 0.95rem;
+}
+#content a {
+  text-decoration: none;
+  color: #337ab7;
+}
+#content a:hover {
+  border-bottom: 1px solid;
+}
+#content blockquote {
+  background: #f8f8f8;
+  width: 100%;
+  box-sizing: border-box;
+  border-left: 10px solid #d3d3d3;
+}
+#paginator {
+  text-align: center;
+  margin-bottom: 0;
+}
+#paginator .page-number {
+  margin: 0 5px;
+}
+#mega-head {
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+  font-size: 3em;
+}
+.layout-socialmedia {
+  text-align: right;
+}
+.responsive-bar,
+.responsive-pad {
+  display: none;
+}
+#bottom {
+  box-sizing: border-box;
+  height: 24px;
+  line-height: 24px;
+}
+#bottom a {
+  text-decoration: none;
+  color: #000;
+}
+#bottom a:visited {
+  color: #000;
+}
+#bottom a:hover {
+  color: #808080;
+}
