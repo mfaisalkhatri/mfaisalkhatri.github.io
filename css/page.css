@@ -1,0 +1,23 @@
+#page {
+  line-height: 2;
+}
+#page h1,
+#page .created-date {
+  text-align: center;
+  display: block;
+  font-weight: bold;
+}
+#page h2,
+#page h3,
+#page h4,
+#page h5,
+#page h6 {
+  line-height: 2;
+  clear: left;
+}
+#page img {
+  width: 30%;
+  height: auto;
+  float: right;
+  clear: right;
+}
