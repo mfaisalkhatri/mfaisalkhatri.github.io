@@ -7,11 +7,19 @@ layout: page
 
 I am Mohammad Faisal Khatri.
 
-QA Engineer, currently based in Mumbai, India, working with CrossAsyst Technologies Pvt. Ltd, having more than 12 of progressive experience in software testing methodologies, best practices in test automation and expertise in variety of test tools like Selenium WebDriver, Cucumber, TestNG, Appium, RestAssured and hands-on experience with CI/CD using Jenkins/Docker.
+ISTQB Certified QA Engineer, currently based in Mumbai, India, working with a reputed company, having more than 12 years of progressive experience in software testing methodologies, best practices in test automation and expertise in variety of test tools like Selenium WebDriver, Cucumber, TestNG, Appium, RestAssured and hands-on experience with CI/CD using Jenkins/Docker.
 
-My career started with Manual testing, after doing Manual testing for around 7+ years, I transitioned to Automation testing by self-learning the latest automation tools and technologies.
+I am a passionate learner and techsavvy . My career started with Manual testing, after doing Manual testing for around 7 years, I transitioned to Automation testing by self-learning the latest automation testing tools and technologies.
 
-I am a passionate learner and keen to learn new technologies. I have achieved project objectives through passion, commitment and expertise and well experienced in complex testing efforts on projects with multiple integration points and aggressive deadlines.
+ I have achieved project objectives through passion, commitment and expertise and well experienced in complex testing efforts on projects with multiple integration points and aggressive deadlines.
 
-# Need my help?
-If you feel I can help you in any way then feel free to connect with me here on this site via chat window or Inbox  me on Facebook/Twitter/LinkedIn.
+Apart from testing, I am a passionate Photographer and Writer. 
+I like capturing Landscapes and Nature at its best.
+I prefer writing two line couplets in urdu and also short stories. 
+Checkout my writings [here][ghalibwaywebsite]
+My photography blogs can be viewed in the Archives section of this website.
+
+# Let's Connect!
+Connect with me here on this site via chat window or DM me on Facebook/Twitter/LinkedIn.
+
+[ghalibwaywebsite]: https://ghalibway.co.in
