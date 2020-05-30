@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>How to connect mobile to PC using ADB | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><meta name="generator" content="Hexo 4.2.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Archives</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Twitter" href="https://twitter.com/mfaisal_khatri" target="_blank" rel="noopener"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" href="https://github.com/mfaisalkhatri" target="_blank" rel="noopener"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="Facebook" href="https://www.facebook.com/faisal.khatri86" target="_blank" rel="noopener"><i class="iconfont icon-facebook"></i></a><a class="link-item main-link-item" title="LinkedIn" href="https://www.linkedin.com/in/faisalkhatri/" target="_blank" rel="noopener"><i class="iconfont icon-linkedin"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>How to connect mobile to PC using ADB</h1><time class="created-date" datetime="2020-05-30T06:08:20.000Z">2020-05-30</time><img src="/2020/05/30/howtoconnectmobileusingadb/header_image.jpg" class="" title="Header Image">
+
+<p>Hello,<br>    In this Post I will be discussing about how to connect your mobile phone to PC using ADB command.<br>    Lets go step by step to implement this.</p>
+<ul>
+<li><p><strong>STEP ONE</strong>: </p>
+<p>  Install Android Studio on your PC.</p>
+</li>
+<li><p><strong>STEP TWO</strong>: </p>
+<p>  Create “ANDROID_HOME” environment variable by giving android/sdk path in it.</p>
+</li>
+<li><p><strong>STEP THREE</strong>:<br>  <strong>Enable “USB Debugging” in your phone.</strong></p>
+<ol>
+<li><p>Go to your Phone Settings &gt;&gt; About &gt;&gt; Tap the Build Number/MIUI version 7 times to enable “Developer Options”.</p>
+<img src="/2020/05/30/howtoconnectmobileusingadb/Settings_Version.png" class="" title="Phone Settings">
+</li>
+<li><p>In Developer Options &gt;&gt; Enable USB Debugging.</p>
+</li>
+<li><p>In Developer Options &gt;&gt; Enable USB Debugging(Security Settings) <In case of MI Phones>.</p>
+<img src="/2020/05/30/howtoconnectmobileusingadb/Developer_Options_USB_Debuggin_On.png" class="" title="Enable USB Debugging">
+</li>
+</ol>
+</li>
+<li><p><strong>STEP FOUR</strong>:<br>  <strong>Connect your phone to your PC using USB.</strong></p>
+<ol>
+<li><p>Run the command “adb devices”. It will give output as follows:<br><code>List of devices attached  &lt;encrypted device id&gt; device</code></p>
+  <img src="/2020/05/30/howtoconnectmobileusingadb/Adb_Devices_1.png" class="" title="Enable ADB devices">
+</li>
+<li><p>Run the command <code>adb tcpip 5555</code>, it will restart adb on default port.</p>
+  <img src="/2020/05/30/howtoconnectmobileusingadb/Adb_tcpip_connect.png" class="" title="tcpip connect">
+</li>
+<li><p>Go to your Phone Settings &gt;&gt; Status &gt;&gt; Check Ip of your phone.</p>
+  <img src="/2020/05/30/howtoconnectmobileusingadb/Settings_Status_MobileIP.png" class="" title="Mobile IP">
+</li>
+<li><p>Run the command in command prompt of your pc: <code>adb connect &lt;ip address of your phone&gt; &lt;Press Enter&gt;</code><br>If the everything is successful, command prompt will displayed message as<br><code>connected to &lt;ip address of your phone&gt;</code>.</p>
+</li>
+<li><p>Again run the command <code>adb devices</code>, it will show 2 devices as follows:<br>List of devices attached<br><code>&lt;encrypted device id&gt;   device</code><br><code>&lt;ip of your phone&gt;      device</code></p>
+<img src="/2020/05/30/howtoconnectmobileusingadb/Adb_connect_devices.png" class="" title="ADB Devices">
+</li>
+<li><p>Now, disconnect your phone from pc and again run the command <code>adb devices</code>, it will show only 1 device connected as follows:<br>List of devices attached <code>&lt;ip of your phone&gt; device</code></p>
+</li>
+</ol>
+</li>
+<li><p>Congratulations, you have successfully connected your device to your PC, now you don’t need to keep your device connected through USB all the time.</p>
+</li>
+</ul>
+</article><div id="paginator"></div></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>HEXO</span></a><span>. Theme </span><a href="https://github.com/lixuetaoleo/hexo-theme-leo" target="_blank" rel="noopener">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
