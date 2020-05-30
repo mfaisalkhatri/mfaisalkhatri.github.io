@@ -17,7 +17,6 @@ Apart from testing, I am a passionate Photographer and Writer.
 I like capturing Landscapes and Nature at its best.
 I prefer writing two line couplets in urdu and also short stories. 
 Checkout my writings [here][ghalibwaywebsite]
-My photography blogs can be viewed in the Archives section of this website.
 
 # Let's Connect!
 Connect with me here on this site via chat window or DM me on Facebook/Twitter/LinkedIn.
