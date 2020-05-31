@@ -89,19 +89,13 @@ socialmedia:
    LinkedIn: https://www.linkedin.com/in/faisalkhatri/
   # Skype: 
   # CodeSandBox:
-  # CodePen:
   # Sketch:
   # Gitlab:
   # Dribble:
   # Reddit:
   # YouTube:
-  # QQ:
   # WeChat:
-#disqus comment plugin configuration    
-disqus:
-  enable: true
-  shortname: mfaisalkhatri-github-io
-  count: true
+disqus_shortname: mfaisalkhatri-github-io
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
