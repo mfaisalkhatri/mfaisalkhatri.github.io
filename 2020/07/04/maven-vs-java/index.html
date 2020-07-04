@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>Why is Maven more preferable than Simple Java project? | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><meta name="generator" content="Hexo 4.2.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Archives</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Twitter" href="https://twitter.com/mfaisal_khatri" target="_blank" rel="noopener"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" href="https://github.com/mfaisalkhatri" target="_blank" rel="noopener"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="Facebook" href="https://www.facebook.com/faisal.khatri86" target="_blank" rel="noopener"><i class="iconfont icon-facebook"></i></a><a class="link-item main-link-item" title="LinkedIn" href="https://www.linkedin.com/in/faisalkhatri/" target="_blank" rel="noopener"><i class="iconfont icon-linkedin"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>Why is Maven more preferable than Simple Java project?</h1><time class="created-date" datetime="2020-07-04T05:31:20.000Z">2020-07-04</time><h2 id="What-is-this-post-all-about"><a href="#What-is-this-post-all-about" class="headerlink" title="What is this post all about??"></a>What is this post all about??</h2><p>Many people are aware of Maven. But if I ask why would you prefer Maven based Java project over simple Java project,<br>many of you may give just a normal answer like:</p>
+<h5 id="“Maven-has-the-ability-to-download-dependencies-automatically-based-on-the-dependencies-block-you-put-in-respective-maven-project’s-pom-xml-file”"><a href="#“Maven-has-the-ability-to-download-dependencies-automatically-based-on-the-dependencies-block-you-put-in-respective-maven-project’s-pom-xml-file”" class="headerlink" title="“Maven has the ability to download dependencies automatically, based on the dependencies block you put in respective maven project’s pom.xml file”."></a>“Maven has the ability to download dependencies automatically, based on the dependencies block you put in respective maven project’s pom.xml file”.</h5><p>Yes, that’s true and its one of the major bonus point of maven based java project. But there are certain other benefits in maven which when utilized fully can help you a lot in managing and implementing your project.</p>
+<p>Let me describe you all the benefits of using maven on by one.</p>
+<p>So, let’s get started.</p>
+<img src="/2020/07/04/maven-vs-java/Discussion.jpg" class="" title="Discussion">
+
+<p>Today Maven is a very well known term and most of us use it in our automation projects. Though many of us use this power packed tool called Maven, but very few are aware of its uses and benefits. It has variety of commands available which can easily help you out with your daily tedious tasks.</p>
+<h2 id="What-is-Maven"><a href="#What-is-Maven" class="headerlink" title="What is Maven?"></a>What is Maven?</h2><p>Maven is a powerful project management tool that is based on POM(project object model). It is used for projects build, dependency and documentation.</p>
+<h2 id="How-does-Maven-solve-the-following-problems-we-face-in-project-management"><a href="#How-does-Maven-solve-the-following-problems-we-face-in-project-management" class="headerlink" title="How does Maven solve the following problems we face in project management?"></a>How does Maven solve the following problems we face in project management?</h2><p>Here is the list of tasks which Maven takes care of and you just need to sit back and enjoy your cup of coffee while Maven is working:</p>
+<ol>
+<li>It adds all the necessary jars to the project as per the dependencies put by user in pom.xml file.</li>
+<li>Automatically creates the right project structure.</li>
+<li>It makes a project easy to build.</li>
+<li>It provides project information like log document, cross references sources, mailing list, dependency list, unit test reports, etc.</li>
+<li>Works with CLI(Command Line Interface).</li>
+</ol>
+<h2 id="Following-is-the-project-structure-of-maven-project"><a href="#Following-is-the-project-structure-of-maven-project" class="headerlink" title="Following is the project structure of maven project:"></a>Following is the project structure of maven project:</h2><p>This structure is automatically created on creating a new maven project.</p>
+<img src="/2020/07/04/maven-vs-java/Maven_project_structure.png" class="" title="Maven Project Structure">
+
+<h2 id="What-is-pom-xml"><a href="#What-is-pom-xml" class="headerlink" title="What is pom.xml?"></a>What is pom.xml?</h2><p>POM is an acronym for Project Object Model. It contains information about project and configuration of the project such as dependencies, build directory, source directory, test source directory, plugins, goal, etc.<br>Maven reads pom.xml and then executes goal.</p>
+<h2 id="Following-is-the-sample-of-pom-xml-file"><a href="#Following-is-the-sample-of-pom-xml-file" class="headerlink" title="Following is the sample of pom.xml file:"></a>Following is the sample of pom.xml file:</h2><pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;com.mfaisalkhatri&lt;/groupId&gt;
+    &lt;artifactId&gt;mavendemoproject&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+
+    &lt;name&gt;mavendemoproject&lt;/name&gt;
+    &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+
+        &lt;!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
+            &lt;artifactId&gt;selenium-java&lt;/artifactId&gt;
+            &lt;version&gt;3.141.59&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- https://mvnrepository.com/artifact/org.testng/testng --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.testng&lt;/groupId&gt;
+            &lt;artifactId&gt;testng&lt;/artifactId&gt;
+            &lt;version&gt;6.14.3&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.github.bonigarcia&lt;/groupId&gt;
+            &lt;artifactId&gt;webdrivermanager&lt;/artifactId&gt;
+            &lt;version&gt;3.7.1&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.mfaisalkhatri&lt;/groupId&gt;
+            &lt;artifactId&gt;configreader&lt;/artifactId&gt;
+            &lt;version&gt;1.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.8.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;compilerVersion&gt;1.8&lt;/compilerVersion&gt;
+                    &lt;source&gt;${maven.compiler.source}&lt;/source&gt;
+                    &lt;target&gt;${maven.compiler.target}&lt;/target&gt;
+                    &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.0.0-M3&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;test&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+                &lt;configuration&gt;
+                    &lt;properties&gt;
+                        &lt;property&gt;
+                            &lt;name&gt;usedefaultlisteners&lt;/name&gt;
+                            &lt;value&gt; false&lt;/value&gt;
+                        &lt;/property&gt;
+                    &lt;/properties&gt;
+                    &lt;suiteXmlFiles&gt;
+                        &lt;suiteXmlFile&gt;testng.xml&lt;/suiteXmlFile&gt;
+                    &lt;/suiteXmlFiles&gt;
+                    &lt;argLine&gt;-Dfile.encoding=UTF8 -Xdebug -Xnoagent&lt;/argLine&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre><h4 id="Once-you-put-dependencies-inside-the-pom-xml-file-and-save-it-maven-searches-for-dependency-in-maven-central-repository-and-downloads-the-jar-files-accordingly-for-your-project"><a href="#Once-you-put-dependencies-inside-the-pom-xml-file-and-save-it-maven-searches-for-dependency-in-maven-central-repository-and-downloads-the-jar-files-accordingly-for-your-project" class="headerlink" title="Once you put dependencies inside the pom.xml file and save it, maven searches for dependency in maven central repository and downloads the jar files accordingly for your project."></a>Once you put dependencies inside the pom.xml file and save it, maven searches for dependency in maven central repository and downloads the jar files accordingly for your project.</h4><h2 id="Maven-Commands"><a href="#Maven-Commands" class="headerlink" title="Maven Commands:"></a>Maven Commands:</h2><p><strong>1. mvn validate :</strong> Validate the project is correct and all necessary information is available.<br><strong>2. mvn compile :</strong> Compile the source code of the project.<br><strong>3. mvn test :</strong> Test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed.<br><strong>4. mvn package :</strong> Take the compiled code and package it in its distributable format, such as a JAR.<br><strong>5. mvn integration-test :</strong> Process and deploy the package if necessary into an environment where integration tests can be run.<br><strong>6. mvn verify :</strong> Run any checks to verify the package is valid and meets quality criteria.<br><strong>7. mvn install :</strong> Install the package into the local repository, for use as a dependency in other projects locally.<br><strong>8. mvn deploy :</strong> Done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.</p>
+<h4 id="There-are-two-other-Maven-life-cycles-to-note-beyond-the-default-list-above-They-are-as-follows"><a href="#There-are-two-other-Maven-life-cycles-to-note-beyond-the-default-list-above-They-are-as-follows" class="headerlink" title="There are two other Maven life cycles to note beyond the default list above. They are as follows:"></a>There are two other Maven life cycles to note beyond the default list above. They are as follows:</h4><p><strong>1. mvn clean :</strong> Cleans up artifacts created by prior builds.<br><strong>2. mvn site :</strong> Generates site documentation for the project.</p>
+<p>Phases are actually mapped to underlying goals. The specific goals executed per phase is dependent upon the packaging type of the project.</p>
+<p><strong>You can also run the above commands using life cycles commands for e.g.</strong><br><strong>1. mvn clean install.</strong><br><strong>2. mvn clean test</strong><br><strong>3. mvn clean verify, etc..</strong></p>
+<p>The other disadvantage in simple java project is that you cannot run it from CLI. Also, all the packaging and deploying tasks needs to be taken care manually which is a very tedious task.</p>
+<p>Hope, you have got the basic knowledge of how maven works and why it would be more preferable than the simple java project. In case if you have any queries, feel free to connect with me here on this site via chat window or DM me on Facebook/Twitter/LinkedIn.</p>
+<h4 id="Maven-commands-have-been-taken-from-Maven-Official-website"><a href="#Maven-commands-have-been-taken-from-Maven-Official-website" class="headerlink" title="Maven commands have been taken from Maven Official website"></a>Maven commands have been taken from <a href="https://maven.apache.org" target="_blank" rel="noopener">Maven Official website</a></h4><div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>HEXO</span></a><span>. Theme </span><a href="https://github.com/lixuetaoleo/hexo-theme-leo" target="_blank" rel="noopener">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
