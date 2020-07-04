@@ -1,7 +1,7 @@
 ---
 title: Interview Tips - Software Testing
 date: 2020-06-26 21:26:07
-tags: [Testing, QA, Interview,]
+tags: [Testing, QA, Interview]
 ---
 
 Recently, I was waiting for my round of interview at a reputed company. I noticed a girl sitting on the corner of sofa on the other side of the room with a book in her hand continuously reading something from it. 
