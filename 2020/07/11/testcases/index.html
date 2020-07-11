@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>Generic Test Cases for Testing | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><meta name="generator" content="Hexo 4.2.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Archives</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Twitter" href="https://twitter.com/mfaisal_khatri" target="_blank" rel="noopener"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" href="https://github.com/mfaisalkhatri" target="_blank" rel="noopener"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="Facebook" href="https://www.facebook.com/faisal.khatri86" target="_blank" rel="noopener"><i class="iconfont icon-facebook"></i></a><a class="link-item main-link-item" title="LinkedIn" href="https://www.linkedin.com/in/faisalkhatri/" target="_blank" rel="noopener"><i class="iconfont icon-linkedin"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>Generic Test Cases for Testing</h1><time class="created-date" datetime="2020-07-11T04:52:57.000Z">2020-07-11</time><p>&nbsp;</p>
+
+<p>Recently I was reviewing the test cases of one of my colleague who has joined as a fresher in testing team. Though he had tried his best to cover up all the test cases as per the functionality and WireFrame provided in the Business Requirement Specification, I found that cases written were not descriptive to be understood in one go. I had to ask him multiple times what he meant to say in Case 1, then in Case 3 and so on…<p>&nbsp;</p></p>
+<img src="/2020/07/11/testcases/Testing.jpg" class="" title="Testing">  
+
+<p>A thought came to my mind that why should I not create some sample test cases which could help beginners giving a fair idea about writing test cases descriptively. This could help them in writing test cases effectively considering what all things are necessary while drafting test cases to test an application.  </p>
+<h3 id="To-begin-with-lets-first-understand-what-does-a-Test-case-mean"><a href="#To-begin-with-lets-first-understand-what-does-a-Test-case-mean" class="headerlink" title="To begin with, lets first understand what does a Test case mean?"></a>To begin with, lets first understand what does a Test case mean?</h3><p>IEEE Standard 610 (1990) defines test case as follows:<br>    “(1) A set of test inputs, execution conditions, and expected results developed for a<br>    particular objective, such as to exercise a particular program path or to verify compliance<br>    with a specific requirement.<br>    “(2) (IEEE Std 829-1983) Documentation specifying inputs, predicted results, and a set<br>    of execution conditions for a test item.”  </p>
+<p>Its basically what you are testing, with what input, what you expect in return and finally recording the actual outcome of the test.<p>&nbsp;</p></p>
+<img src="/2020/07/11/testcases/fail_pass.jpg" class="" title="TestCase">  
+
+<h3 id="How-to-write-a-good-test-case"><a href="#How-to-write-a-good-test-case" class="headerlink" title="How to write a good test case?"></a>How to write a good test case?</h3><p> A tester should always create a test case considering end user in mind. An effective test case is the one which can uncover defect, its not necessary that you can find bugs only in a complex test case. A Bug could be hidden in the title of the page, you just need an effective test case and a tester’s eye to uncover it.  </p>
+<p>Always mention the Steps in the test case, it makes the developers work easier.  </p>
+<p>Always see to it that you perform one check in a test case. Your test case should not be pointing to two different things. If required, split the test case in two, rather than summing up all in one.  </p>
+<p>Your cases should be self explanatory so the person who views your test cases shouldn’t feel the need to contact you for making him understand what you have written.  </p>
+<p>Try and write independent and small test cases which can be reused later.  </p>
+<h3 id="Sample-Test-Cases"><a href="#Sample-Test-Cases" class="headerlink" title="Sample Test Cases"></a>Sample Test Cases</h3><img src="/2020/07/11/testcases/helping.jpg" class="" title="Help">  
+
+<p>Adding to the above, I have created a repository in Github, and have added sample generic test cases for field level validation, e.g. Text boxes, checkbox, Dropdown box, Multi dropdown box, Date field, etc.., that can be used for testing.</p>
+<p><strong>Checkout the sample cases <a href="https://github.com/mfaisalkhatri/Manual_Testing/" target="_blank" rel="noopener">here.</a></strong><br>You can find <strong>“Generic_Field_Validation_Testcases.xlsx”</strong> inside <strong>“Templates”</strong> folder.<p>&nbsp;</p></p>
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>HEXO</span></a><span>. Theme </span><a href="https://github.com/lixuetaoleo/hexo-theme-leo" target="_blank" rel="noopener">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
