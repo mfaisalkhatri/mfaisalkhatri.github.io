@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /.deploy_git
+Disallow: /.vscode
+Disallow: /db.json
+Sitemap: https://mfaisalkhatri.github.io/sitemap.xml

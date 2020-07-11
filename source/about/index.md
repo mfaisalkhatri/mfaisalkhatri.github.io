@@ -3,7 +3,7 @@ title: About
 date: 2020-05-28 21:56:21
 layout: page
 ---
-![](/image/faisal_khatri.jpg)
+![](/image/faisal_khatri_new.jpg)
 
 I am Mohammad Faisal Khatri.
 
