@@ -21,4 +21,4 @@ Checkout my writings [here][ghalibwaywebsite]
 # Let's Connect!
 Connect with me here on this site via chat window or DM me on Facebook/Twitter/LinkedIn.
 
-[ghalibwaywebsite]: https://ghalibway.co.in
+[ghalibwaywebsite]: https://ghalibway.github.io
