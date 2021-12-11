@@ -9,7 +9,7 @@ description:
 keywords:
 author: Faisal Khatri
 language: en
-timezone:
+timezone: GMT +5:30
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -80,20 +80,20 @@ server:
 
 # Uncomment the tag & add url to show the link you want to show
 socialmedia:
-  # Instagram:
+   Instagram: https://www.instagram.com/iamfaisalkhatri/
    Twitter: https://twitter.com/mfaisal_khatri
-  # Weibo:
    GitHub: https://github.com/mfaisalkhatri
    Facebook: https://www.facebook.com/faisal.khatri86
-  # ZhiHu:
    LinkedIn: https://www.linkedin.com/in/faisalkhatri/
+   YouTube: https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ
+  # ZhiHu:
+  # Weibo:
   # Skype: 
   # CodeSandBox:
   # Sketch:
   # Gitlab:
   # Dribble:
   # Reddit:
-  # YouTube:
   # WeChat:
 disqus_shortname: mfaisalkhatri-github-io
 # Deployment
