@@ -9,7 +9,7 @@ description:
 keywords:
 author: Faisal Khatri
 language: en
-timezone: GMT +5:30
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
