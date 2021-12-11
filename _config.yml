@@ -9,11 +9,7 @@ description:
 keywords:
 author: Faisal Khatri
 language: en
-<<<<<<< HEAD
-timezone:
-=======
 timezone: GMT +5:30
->>>>>>> ffcc63415f3ff1a49af05a7d4c00012ceb7bb8c0
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
