@@ -36,4 +36,4 @@ P.S.: My [YouTube Channel][ytlink] is live now, Do Subscribe and get the latest 
 
 <p>&nbsp;</p>
 
-[ytlink]: https://www.youtube.com/channel/ucz2qyl9lczdrfdzumk3tlvq
+[ytlink]: https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ
