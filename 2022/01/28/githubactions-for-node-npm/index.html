@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>How to setup Github Actions for nodejs project? | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Instagram" target="_blank" rel="noopener" href="https://www.instagram.com/iamfaisalkhatri/"><i class="iconfont icon-instagram"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/faisal.khatri86"><i class="iconfont icon-facebook"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>How to setup Github Actions for nodejs project?</h1><time class="created-date" datetime="2022-01-28T14:21:36.000Z">2022-01-28</time><div class="sharethis-inline-share-buttons"></div><p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/githubactions_banner.png" class="" title="Header Image">
+<p>&nbsp;</p>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Yesterday I was doing a POC on Super Test, an HTTP assertions library that allows you to test your APIs using Javascript. A thought came to my mind to add the pipeline using Github Actions, since my code is checked-in on Github. It will help me running the regression tests on the pipeline and provide me an advantage to check for the failing cases/issues in the code before I merge anything to main branch. Hence, I added the github action workflow in the repository.<br>In this blog, I would be providing the walkthrough of how to setup github actions for nodejs. It would be a guiding tutorial for the folks who want to use this feature and would be a documentation for me as well.</p>
+<h2 id="What-is-github-actions"><a href="#What-is-github-actions" class="headerlink" title="What is github actions?"></a>What is github actions?</h2><p>As per the <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions">Github actions website</a>, GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production.</p>
+<p>GitHub Actions goes beyond just DevOps and lets you run workflows when other events happen in your repository. For example, you can run a workflow to automatically add the appropriate labels whenever someone creates a new issue in your repository.</p>
+<p>GitHub provides Linux, Windows, and macOS virtual machines to run your workflows, or you can host your own self-hosted runners in your own data center or cloud infrastructure.</p>
+<h2 id="How-to-setup-github-actions-workflow"><a href="#How-to-setup-github-actions-workflow" class="headerlink" title="How to setup github actions workflow?"></a>How to setup github actions workflow?</h2><p>Setting up github actions is very easy, there is no complex tasks or files that you need to create. It can be setup in the following simple steps:</p>
+<h3 id="Step-1-Create-a-Github-Repo-and-check-in-all-your-code-on-Github"><a href="#Step-1-Create-a-Github-Repo-and-check-in-all-your-code-on-Github" class="headerlink" title="Step 1 - Create a Github Repo and check-in all your code on Github"></a>Step 1 - Create a Github Repo and check-in all your code on Github</h3><p>Creating and checking all your code on Github is again simple task. Checkout the <a target="_blank" rel="noopener" href="https://docs.github.com/en/get-started/quickstart/create-a-repo">link here</a> which will help you to create a repository and check in your code on github.</p>
+<h3 id="Step-2-Go-To-Actions-Tab-and-select-appropriate-workflow-depending-on-your-programming-language"><a href="#Step-2-Go-To-Actions-Tab-and-select-appropriate-workflow-depending-on-your-programming-language" class="headerlink" title="Step 2 - Go To Actions Tab and select appropriate workflow depending on your programming language"></a>Step 2 - Go To Actions Tab and select appropriate workflow depending on your programming language</h3><p>Once the Github repository is created and all the code is checked-in. You will have to click on the <code>Actions</code> Tab as shown in the pic below.</p>
+<p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/actions_1.PNG" class="" title="Action Step one">
+<p>&nbsp;</p>
+
+<p>Next, you need to select the workflow depending on the programming language of your project. Here, I would be selecting <code>Node.js</code> since my project is Nodejs based. I have selected the third option in the first row and clicked on Configure.</p>
+<img src="/2022/01/28/githubactions-for-node-npm/workflow_selection_2.PNG" class="" title="Workflow section">
+
+<p>Once you click on <code>Configure</code> your will be taken to a page where github will auto create a workflow file as per the option you selected and accordingly if you want, you can make the changes in the file as per your needs to install packages, build the project and run the tests. I liked this as it is totally customizable and provides all the implementation in your hands to choose and add the steps as per your requirement.</p>
+<p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/workflow_creation_3.PNG" class="" title="Workflow Yml">
+<p>&nbsp;</p>
+
+<p>Once you have updated all the steps and the commands you want to run within the workflow you can commit the changes by clicking on Green button called <code>Start Commit</code> button on top right hand.<br>It will take you to the <code>Actions</code> Tab where you will be able to see the Workflow in Action which you just created.</p>
+<p>On the left hand side you will be shown the workflow name, in my case it is <code>Node.js CI</code> and on the right hand side in the Tab you should be seeing the workflow running check <code>a yellow dot with commit message</code> in the below screenshot:</p>
+<p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/workflow_run_4.PNG" class="" title="Workflow Run">
+<p>&nbsp;</p>
+
+<p>Now, if you click on the workflow run, it will take you deeper in the run and you should be able to checkout what all things are cooking inside in the run. In my case, it shows 3 jobs running, i.e.</p>
+<ol>
+<li>build (12.x)</li>
+<li>build (14.x)</li>
+<li>build (16.x)</li>
+</ol>
+<p>This is because as per my workflow, I have selected to run my build and tests on 3 different versions of <code>Nodejs</code>, namely, 12, 14 and 16.</p>
+<p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/workflow_run_5.PNG" class="" title="Workflow Jobs">
+<p>&nbsp;</p>
+
+<p>On the right hand pane, if you click the <code>show all jobs</code> tab, you will be further taken into the job details. Below is the screenshot of jobs running in Node 16:</p>
+<p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/workflow_run_node16.PNG" class="" title="Workflow Jobs node 16">
+<p>&nbsp;</p>
+
+<p>Once all the jobs are complete, Test Report will be published as a part of next step. I have configured <code>mocha-json</code> reporter since I am using mocha to run the tests:</p>
+<p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/testreport.png" class="" title="Workflow Test Report">
+<p>&nbsp;</p>
+
+<h2 id="Understanding-the-workflow-yml-file"><a href="#Understanding-the-workflow-yml-file" class="headerlink" title="Understanding the workflow yml file"></a>Understanding the workflow yml file</h2><p>Checkout the Worflow file in the <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/SuperTest_poc">Github repository here</a><br>Workflow yml file can be found inside the <code>.github/workflows</code> folder, filename is <code>node.js.yml</code>.</p>
+<p>Let me explain you what the content of the yml file looks like and what it means.</p>
+<p>&nbsp;</p>
+<img src="yaml_1.png" width="800" height="500" alt="Workflow Yml Part 1" title="Workflow Yml Part 1">
+<p>&nbsp;</p>
+
+<p>First of all in the workflow you need to assign a name to the workflow which can be done using the <code>name</code> tag on the first line of the file.<br>Next, we need to tell workflow when it should run, for that <code>on</code> tag can be used alongwith telling the workflow when to get started.</p>
+<p>Here, I have set to run whenever a code is <strong>pushed to <em>main</em></strong> branch and also when code is <strong>pushed to a brach having name like <em>issue-</em></strong> since I create the fix branches name with <em>issue-</em> following the issue number.</p>
+<p>Also, it will run whenever a Pull Request is raised on <em><em>main</em></em> or <em><em>issue-</em></em> branches.</p>
+<p>&nbsp;</p>
+<img src="yaml_2.png" width="800" height="500" alt="Workflow Yml Part 2" title="Workflow Yml Part 2">
+<p>&nbsp;</p>
+
+<p>Next, we need to setup the jobs to be run. For this we need to provide the machine image we would be using for running the build. In our case, it will be running on <code>ubuntu-latest</code>. The next is the strategy to run the build. We need to set the node version on which we need to run the tests. I found this very flexible and amazing, it was because we can provide multiple node versions. In our case, it will be following 3 node versions:</p>
+<ol>
+<li>Node 12.x</li>
+<li>Node 14.x</li>
+<li>Node 16.x</li>
+</ol>
+<p>This is amazing as it helps us run the build on multiple environments thereby allowing us to leverage our build and test startegy on multiple node verions which is a kind of complex thing to do on local machine.</p>
+<p>Once the machine and nde versions are set. We can continue to set the <code>steps</code> we need to run the build and test stage.</p>
+<p>&nbsp;</p>
+<img src="yaml_3.png" width="800" height="500" alt="Workflow Yml Part 3" title="Workflow Yml Part 3">
+<p>&nbsp;</p>
+
+<ol>
+<li><code>actions/checkout@v2</code> &gt;&gt; This action checks-out your repository under <code>$GITHUB_WORKSPACE</code>, so your workflow can access it.</li>
+<li><code>actions/setup-node@v2</code> will setup the node versions as defined in the <code>build: strategy</code> where we have mentioned the different node versions we need for this build. These node version will be taken in consideration using <code>node-version: $&#123;&#123; matrix.node-version &#125;&#125;</code>. In this Step, your github repository will be checked out, and node will be setup in the build machine. Now, your machine is setup and is ready to install and build what all npm packages you need for your project to build and run the tests.</li>
+<li>In the next step, we will install <code>superTest</code>, <code>chai</code> and <code>mocha</code> since these packages are needed to build and run the tests.</li>
+<li>Once packages are installed, we would be running the following commands, to package, build and run the tests.<ol>
+<li><em>npm ci</em></li>
+<li><em>npm run build –if-present</em></li>
+<li><em>npm test</em></li>
+</ol>
+</li>
+</ol>
+<p>One point to mention here is, I have already added the script in the <code>package.json</code> to run the script with npm test. Here is the snippet of the <code>test</code> script from <code>package.json</code>, so when I run <code>npm test</code> it will call the following script:</p>
+<pre><code>&quot;scripts&quot;: &#123;
+        &quot;test&quot;: &quot;mocha **/*.spec.js &amp;&amp; mocha --reporter json &gt; reports/test-results.json&quot;
+    &#125;
+</code></pre>
+<p>&nbsp;</p>
+<img src="yaml_4.png" width="800" height="500" alt="Workflow Yml Part 4" title="Workflow Yml Part 4">
+<p>&nbsp;</p>
+
+<p>In the end, I have added a <code>Test-Report</code> step which will be shown once all the tests are run in the workflow and will show the results so any user can checkout and see the summary of the tests run with its actual outcome. It uses <code>dorny/test-reporter@v1</code>, report will be generated if tests pass or fail,i.e everytime the workflow is run. It will pick data from the json file in the <code>/reports/test-results.json</code> file and <code>mocha-json</code> reporter format would be used to show the report.</p>
+<h2 id="Running-the-Workflow"><a href="#Running-the-Workflow" class="headerlink" title="Running the Workflow"></a>Running the Workflow</h2><p>As mentioned earlier, Workflow would be run once the code is pushed to branch having name like <code>issue</code> or <code>main</code> branch.</p>
+<h3 id="This-is-how-it-looks"><a href="#This-is-how-it-looks" class="headerlink" title="This is how it looks:"></a>This is how it looks:</h3><p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/workflow_run_1.png" class="" title="Workflow all jobs">
+<p>&nbsp;</p>
+
+<h3 id="Here-is-the-how-the-workflow-jobs-are-shown-in-case-a-PR-is-raised"><a href="#Here-is-the-how-the-workflow-jobs-are-shown-in-case-a-PR-is-raised" class="headerlink" title="Here is the how the workflow jobs are shown in case a PR is raised:"></a>Here is the how the workflow jobs are shown in case a PR is raised:</h3><p>&nbsp;</p>
+<img src="/2022/01/28/githubactions-for-node-npm/raisingpr.PNG" class="" title="Workflow when PR Raised">
+<p>&nbsp;</p>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>I hope you would have got a better understanding of how the Github Actions workflow works and how to set it up. Its a good way of setting up your own customized pipeline and automate the tedious tasks which eats up most of your time.<br>If you have any queries or doubt about this please feel free to reach me and discuss the same.</p>
+<p>– Faisal Khatri</p>
+<p>&nbsp;</p>
+
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
