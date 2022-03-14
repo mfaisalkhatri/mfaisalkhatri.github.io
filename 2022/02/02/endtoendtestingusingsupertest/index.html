@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>End to End Testing using SuperTest | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Medium" target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri"><i class="iconfont icon-medium"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>End to End Testing using SuperTest</h1><time class="created-date" datetime="2022-02-02T09:32:09.000Z">2022-02-02</time><div class="sharethis-inline-share-buttons"></div><img src="/2022/02/02/endtoendtestingusingsupertest/coverimage.png" class="" title="Cover Image">
+
+<p>&nbsp;</p>
+
+<p>I have been a huge fan of rest-assured framework in java and have been using it quite largely for testing in my previous project. Since I have been Working on java for a couple of years, I thought of exploring some other programming languages as well and decided to get my hands dirty on javascript as it is light weight, having object oriented support and mostly similar to java, hence it was fun and easy to learn it in quick time.</p>
+<p>To begin with API Testing, I was exploring and trying to find out some library/package on npm which I could use for testing the APIs. While exploring I came to across supertest. Initially, I had to google a lot about it as I couldn’t find an easy to understand documentation about it, however, I went further understanding how to install and use it. It was fun using this library and automating the tests. I enjoyed writing tests far better using this library than I had been doing using rest-assured. Let me take you to a tour of supertest describing what it is and How to use it!</p>
+<h2 id="What-is-SuperTest"><a href="#What-is-SuperTest" class="headerlink" title="What is SuperTest?"></a>What is SuperTest?</h2><p><a target="_blank" rel="noopener" href="https://github.com/visionmedia/supertest">SuperTest</a> is a Node.js library that helps in testing APIs. It extends another library called superagent, a JavaScript HTTP client for Node.js and the browser. You can use SuperTest as a standalone library or with JavaScript testing frameworks like <a target="_blank" rel="noopener" href="https://mochajs.org/">Mocha</a>.</p>
+<h2 id="Testing-APIs"><a href="#Testing-APIs" class="headerlink" title="Testing APIs"></a>Testing APIs</h2><h3 id="What-is-API-Testing"><a href="#What-is-API-Testing" class="headerlink" title="What is API Testing?"></a>What is API Testing?</h3><blockquote>
+<p><em>I have created this <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/Manual_Testing/tree/master/Templates">repository on github</a> which has sample test cases explaining how to test API, checkout the file named <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/Manual_Testing/blob/master/Templates/TestCases_for_ApiTesting.xlsx">“TestCases_for_ApiTesting.xlsx”</a> from the repository</em>.</p>
+</blockquote>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>To begin with, you need to have Node.js installed on your machine. <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Download Node.js from here</a> and install it on your machine, if you don’t have it.<br>I have used Mocha framework for writing the tests and <a target="_blank" rel="noopener" href="https://www.chaijs.com/">Chai</a> for assertions. Using the command given below you can install supertest, mocha and chai in one go:</p>
+<pre><code>npm i -D supertest mocha chai
+</code></pre>
+<p>Once the installation of the required library is complete you are all set to start using the library and write the API tests and perform the assertions.</p>
+<p>Following are the list of APIs on the <a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html">restful-booker</a> website which I have used to write end to end tests.</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking">Create Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-GetBooking">Get Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-UpdateBooking">Update Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-PartialUpdateBooking">Partial Update Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-DeleteBooking">Delete Booking</a></li>
+</ol>
+<p>For sending the Update, Partial Update and Delete Booking requests it requires an AUTH token which is generated using the <a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Auth-CreateToken">CreateToken</a> API.</p>
+<p>Since its testing end to end scenarios, hence, I chalked out the following test automation strategy to test the APIs so it could be tested in an efficient way:</p>
+<ol>
+<li>Create a Booking, all test data required to be sent in the body of the request will be picked from a separate json file.</li>
+<li>Assert the response of Create Booking request with the json test data file.</li>
+<li>Save the Booking Id from create booking response in a variable so it could be used in further tests.</li>
+<li>Get Booking details using the booking id in step 2 and compare with the create booking response ideally from the json file which holds the test data.</li>
+<li>Create Auth token function so it could be reused in Put, Patch and Delete requests.</li>
+<li>Update the booking dates and total price using the <strong>booking id</strong> in step 2 and AUTH token in step 4. Use separate test data json file for Put request which holds updated booking data.</li>
+<li>Assert the response of update booking.</li>
+<li>Update the <code>firstname</code> and <code>lastname</code> using the Patch request.</li>
+<li>Assert the response returned from Patch request using the updated data that was supplied.</li>
+<li>Delete the booking and assert the status code.</li>
+<li>Get the Booking Id which is deleted(booking Id from Step 2), here it is expected to send <strong>status code 404</strong> since the booking is deleted.<br>This step confirms that booking got successfully from the system.</li>
+</ol>
+<p>Lets get into the code now and see how the implementation of the above steps can be done!!</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>First of all, we need to import the supertest library and expect library from chai to setup and start its respective functions in our tests.</p>
+<p>It can be done by writing the following statements on the top of your tests.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/1_setup.png" class="" title="Setup">
+<p>&nbsp;</p>
+
+<p>Now, you are all set to write the tests. We will start by implementing the strategy I discussed above.</p>
+<p>Import Statements and Global Variables used in the tests:</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/2_global_var.png" class="" title="Global Variables">
+<p>&nbsp;</p>
+
+<h2 id="Create-a-Booking"><a href="#Create-a-Booking" class="headerlink" title="Create a Booking"></a>Create a Booking</h2><p>Its very simple to send a Post request with the test data by using the <code>request</code> function and then calling the post function and after that send function to <code>send</code> the request body.</p>
+<p>Lets start with request body first, here is how <code>booking.json</code> file looks:</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/3_booking_json.png" class="" title="Booking Json file">
+<p>&nbsp;</p>
+
+<p>I have used the variable <code>booking</code> which actually imports the <code>booking.json</code> file and sends the data in the file as request body using <code>send</code> function.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/4_import_booking.png" class="" title="Import Booking">
+<p>&nbsp;</p>
+
+<p>Headers for the request are set by using <code>set</code> function and passing the required values in the header. Once the <code>request, request body and headers</code> are set we need to call the end function which performs the request and invokes <code>fn(err, res)</code> in which we can perform the assertions and in case if there is an error returned from the API request, it will throw an error. We need to call the <code>done</code> function once our test is complete. This is necessary as it informs the calling <code>function(err,res)</code> that the task is completed.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/5_create_booking.png" class="" title="Create Booking">
+<p>&nbsp;</p>
+
+<p>Booking id is saved in the <code>bookingId</code> variable which helps in the next Test of getting the booking id using Get Booking Id request.</p>
+<p>Once the post request is sent successfully, all the data received in the response is validated using the <em>expect</em> function from <em>chai</em> library. The data from <code>booking.json</code> is asserted against the actual data coming in response which assures that what we sent in post request is actually what booking details are.</p>
+<h2 id="Get-Booking"><a href="#Get-Booking" class="headerlink" title="Get Booking"></a>Get Booking</h2><p>Similarly we can send a Get request by using the request function and then calling the get function.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/6_getbooking.png" class="" title="Get Booking">
+<p>&nbsp;</p>
+
+<p>If you see closely, global variable <code>bookingId</code> is called as a parameter inside the get function which actually holds the value of booking id we saved using the post request as we discussed above.</p>
+<p>Once the get request is sent successfully, all the data received in the response is validated using the expect function from chai library. All the data in the response is compared from the <code>booking.json</code> file.</p>
+<h2 id="Update-Booking"><a href="#Update-Booking" class="headerlink" title="Update Booking"></a>Update Booking</h2><p>For updating the booking, <strong>Put request</strong> needs to be sent and you might be knowing that for Put requests we need to send the full body in the request. We cannot just simply send the fields which we need to update. Hence, I created a new json file <code>updatedbooking.json</code> and have updated values for the <strong>booking dates and total price fields</strong> in it.</p>
+<p>This is how <code>updatedbooking.json</code> looks:</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/7_updatebookingjson.png" class="" title="Update Booking Json">
+<p>&nbsp;</p>
+
+<p>There is one more important point to take care of while sending the put request is, we would require an <strong>Auth Token</strong> without which we won’t be able to send the request successfully and in case if try to we send it, we will get <code>403:Forbidden</code> error in response.</p>
+<p>For getting the token successfully, we need to send login credentials which is consumed by the Post request and in the response delivers us the auth token. I have created another file for storing the credentials in a json file. Though, it is not a recommended way of storing the login credentials in a file, as a concern regarding security.<br>However, from the tutorial point of view, just to explain how we can get the token and pass it in tests, I have used it in this way.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/8_create_token_creds.png" class="" title="Create Token Json">
+<p>&nbsp;</p>
+
+<p>For getting the token, I have added a function which runs before the tests and gets the token, stores it in the <code>token</code> variable and keeps it ready so we can use it in our tests. An assertion check has also been done here with respect to the <strong>status code</strong> and <strong>response body</strong> being not null after which value of token from response is stored in token variable.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/9_createtokenrqst.png" class="" title="Create Token Request">
+<p>&nbsp;</p>
+
+<p>Once we have the token, we are ready to update the booking.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/10_updatebooking.png" class="" title="Update Booking">
+<p>&nbsp;</p>
+
+<p>Important statement to note here is for setting the token value in the header<br><code>set(&#39;Cookie&#39;, &#39;token=&#39; +token)</code> is used. Since in the Header, key is <code>Cookie</code> and value is <code>token=&lt;token value&gt;</code>.</p>
+<p><code>bookingId</code> is supplied using the global variable which stored the booking id while creating the booking.</p>
+<p>Once the Put request is sent successfully, assertions are done using the expect function from chai library and values are compared using the expected values from <code>updatedbooking.json</code> with actual values coming in response.</p>
+<h2 id="Partial-Update-Booking"><a href="#Partial-Update-Booking" class="headerlink" title="Partial Update Booking"></a>Partial Update Booking</h2><p>The only difference between Partial update and Update is, <strong>Update Booking</strong> is done using <strong>PUT request</strong> whereas <strong>Partial Update</strong> is done using <strong>PATCH request</strong>.</p>
+<p>Patch requests can be send in the similar way as we do for post and put. However, in case of patch requests you can send only the required fields which you need to update, hence sending whole request body with all the fields is not required like for PUT requests.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/11_partial_updatebooking.png" class="" title="Partial Update Booking">
+<p>&nbsp;</p>
+
+<p>If you see in the screenshot attached above, I have sent only the <code>firstname</code> and <code>lastname</code> fields and its respective values using the <code>send</code> function. In addition, it also requires <code>token</code> to be set in header to send the requests successfully. <code>bookingId</code> is supplied using the global variable which stored the booking id while creating the booking.</p>
+<p>Once Patch request is sent successfully, values for <code>firstname</code> and <code>lastname</code> fields are checked by comparing it with the actual values in the response with the value stored in the respective variables and rest of the response values are asserted with the <code>updatedbooking.json</code> since it has the latest updated values.</p>
+<h2 id="Delete-Booking"><a href="#Delete-Booking" class="headerlink" title="Delete Booking"></a>Delete Booking</h2><p>Coming to the last step of our automation strategy where we check by deleting booking using Delete request. This is the easiest step to automate as minimal assertion is required, like, to check the <code>status code</code> as the data would be deleted once this request is sent.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/12_delete_booking.png" class="" title="Delete Booking">
+<p>&nbsp;</p>
+
+<p>Here, token needs to be supplied in the header as well and booking id is supplied using the global variable. From the assertions, I am just checking the <code>status code to be 201</code> once the delete request is successful. Ideally for <strong>Delete</strong>, we expect <code>status code</code> to be <strong>204</strong>.</p>
+<p>We can perform one more test after delete just to be sure that the delete actually deleted the booking which is by calling the Get request with the booking id which we just deleted and we can expect the request to return <code>status code 404:Not Found</code>.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/13_delete_Booking.png" class="" title="Delete Booking Check">
+<p>&nbsp;</p>
+
+<p>With this, all our end to end scenarios are complete. We tested by creating a booking, then updating it and then partially updating the name and finally delete the same booking id. We also tested by checking if the delete API actually deleted the booking by calling the Get request by entering the deleted bookings id.</p>
+<p>Let me show you the script I have updated in the <code>package.json</code> file which will help in running the tests and generate a json file for test results which is used by github-actions to generate a report in the github actions workflow.</p>
+<p>Checkout my blog, where I talk about <a target="_blank" rel="noopener" href="https://mfaisalkhatri.github.io/2022/01/28/githubactions-for-node-npm/">creating a workflow using github actions for Node.js project</a></p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/14_package_json_script.png" class="" title="Package json script">
+<p>&nbsp;</p>
+
+<p>Lets run the test now! We just need to run the command <code>npm test</code> and that’s all.<br>Here is the sample <strong>mochawesome report</strong> showing test summary once all the tests are run successfully.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/02/endtoendtestingusingsupertest/15_mochawesome_report.png" class="" title="Mochawesome Report">
+<p>&nbsp;</p>
+
+<p>I hope you enjoyed reading the blog and most importantly understanding what API testing is all about, how to create a test automation strategy to test the APIs and actually test the APIs using supertest!</p>
+<h2 id="Github-Repository"><a href="#Github-Repository" class="headerlink" title="Github Repository"></a>Github Repository</h2><p>Checkout <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/SuperTest_poc">Github Repository here</a>, it has all the code I have discussed above.<br>In case if you need any help, do reach out to me via chat on this site or <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/">Linkedin</a>.</p>
+<p>Happy Testing!!</p>
+<p>&nbsp;</p>
+
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
