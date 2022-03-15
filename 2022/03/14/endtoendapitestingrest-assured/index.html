@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>End to End API Testing using Rest-Assured | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Medium" target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri"><i class="iconfont icon-medium"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>End to End API Testing using Rest-Assured</h1><time class="created-date" datetime="2022-03-14T14:50:39.000Z">2022-03-14</time><div class="sharethis-inline-share-buttons"></div><img src="/2022/03/14/endtoendapitestingrest-assured/coverimage.png" class="" title="Cover Image">
+
+<p>&nbsp;</p>
+
+<p>I am a huge fan of rest-assured framework and have been using it since past couple of years. My current project has the demand for Mobile Automation and hence I didn’t get much chance to work on API testing lately. So, as a part of revising the already known things I thought I should practice writing some API tests using rest-assured and make it public so others too, who want to learn more about API testing and rest-assured will get a chance to know more about it.</p>
+<h2 id="Testing-APIs"><a href="#Testing-APIs" class="headerlink" title="Testing APIs"></a>Testing APIs</h2><h3 id="What-is-API-Testing"><a href="#What-is-API-Testing" class="headerlink" title="What is API Testing?"></a>What is API Testing?</h3><blockquote>
+<p><em>I have created this <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/Manual_Testing/tree/master/Templates">repository on github</a> which has sample test cases explaining how to test API, checkout the file named <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/Manual_Testing/blob/master/Templates/TestCases_for_ApiTesting.xlsx">“TestCases_for_ApiTesting.xlsx”</a> from the repository</em>.</p>
+</blockquote>
+<h2 id="What-is-rest-assured"><a href="#What-is-rest-assured" class="headerlink" title="What is rest-assured?"></a>What is rest-assured?</h2><p><a target="_blank" rel="noopener" href="https://rest-assured.io/">REST-Assured</a> is a Java library that provides a domain-specific language (DSL) for writing powerful, maintainable tests for RESTful APIs. One thing I really like about rest-assured is its BDD style of writing tests and one can read the tests very comfortably like whats going on inside and how the tests will proceed.</p>
+<h2 id="Test-Automation-Strategy"><a href="#Test-Automation-Strategy" class="headerlink" title="Test Automation Strategy"></a>Test Automation Strategy</h2><p>Let me tell you the details about the APIs we are going to automate and test automation strategy as we need to be very much clear what all things we are going to automate and what ROI(Return on Investment) it will provide to us.</p>
+<p>Following are the list of APIs on the <a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html">restful-booker</a> website which I have used to write end to end tests.</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking">Create Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-GetBooking">Get Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-UpdateBooking">Update Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-PartialUpdateBooking">Partial Update Booking</a></li>
+<li><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-DeleteBooking">Delete Booking</a></li>
+</ol>
+<p>For sending the Update, Partial Update and Delete Booking requests it requires an AUTH token which is generated using the <a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Auth-CreateToken">CreateToken</a> API.</p>
+<p>Since its testing end to end scenarios, hence, I planned the following test automation strategy to test the APIs so it could be tested in an efficient way:</p>
+<ol>
+<li>Create a Booking, all test data required to be sent in the body of the request will be picked from a separate <code>pojo</code> which will build the data for post request.</li>
+<li>Assert the response of Create Booking request with the data posted using the <strong>Step 1</strong>.</li>
+<li>Save the <em>Booking Id</em> from create booking response in a variable so it could be used in further tests.</li>
+<li>Get Booking details using the <em>Booking Id</em> in <strong>Step 2</strong> and compare with the create booking response ideally from the data posted using <strong>Step 1</strong>.</li>
+<li>Create a <strong>token generation method</strong> so it could be reused in Put, Patch and Delete requests.</li>
+<li>Update all the booking details using the <em>Booking Id</em> in <strong>Step 2</strong> and <em>AUTH token</em> in <strong>Step 4</strong>. Generate a separate booking data using the booking data builder as discussed in <strong>Step 1</strong>.</li>
+<li>Assert the response of update booking.</li>
+<li>Update the <code>firstname</code> and <code>totalprice</code> using the Patch request.</li>
+<li>Assert the response returned from Patch request using the updated data that was supplied. Here, only <code>firstname</code> and <code>totalprice</code> will be asserted using the <strong>partial update data builder</strong> and the remaining values in the response will be asserted using the data built in <strong>Step 6</strong>.</li>
+<li>Delete the booking and assert the status code.</li>
+<li>Get the <em>Booking Id</em> which is deleted(<code>bookingId</code> from <strong>Step 2</strong>), here it is expected to send <strong>status code 404</strong> since the booking is already deleted.<br>This step confirms that booking got successfully deleted from the system.</li>
+</ol>
+<p>Lets get into the code now and see how the implementation of the above steps can be done!!</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>I have created this project using <a target="_blank" rel="noopener" href="https://maven.apache.org/">Maven</a>. <a target="_blank" rel="noopener" href="https://testng.org/doc/">TestNG</a> is used as test runner. Once the project is created we need to add the dependency for rest-assured in <code>pom.xml</code> file.</p>
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/1_restassured_dependency.png" class="" title="Rest Assured Dependency">
+<p>&nbsp;</p>
+
+<p>I have used <a target="_blank" rel="noopener" href="https://projectlombok.org/">Lombok</a> in this project which is a java library that automatically plugs into your editor and build tools, spicing up your java. Using Lombok, you can save time by writing less code and just putting up annotations like <strong>@Getter @Setter</strong> instead of writing the getters and setters for a <strong>pojo</strong> class. You can add Lombok plugin in intellij, add its dependency in <code>pom.xml</code> and you are all set to start using it in your code. My main intention of using Lombok was to get the extensive leverage of <strong>@Builder</strong> annotation which I have used for building the test data.</p>
+<p>For test data generation on run time I have used Java Faker which helps generating fake data on run time.<br>Here are the dependencies I have added in <code>pom.xml</code> for <em>Java Faker</em> and <em>Lombok</em>.</p>
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/2_javafaker_lombok_dpndcy.png" class="" title="Java Faker and Lombok Dependency">
+<p>&nbsp;</p>
+
+<h2 id="End-to-End-Tests"><a href="#End-to-End-Tests" class="headerlink" title="End to End Tests"></a>End to End Tests</h2><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/3_baseclasssetup.png" class="" title="Base Class Setup">
+<p>&nbsp;</p>
+
+<p>The first thing I did was creating a base setup class which has all the configuration settings for running the tests. Things like BaseURI, Request and Response Specifications, Common Headers, are all set here, using which you don’t need to set the respective specifications in tests separately and it helps in writing more clear and maintainable tests and also all configurations remain at one place.</p>
+<p>We can also add the filters like <em>RequestLoggingFilter</em> and <em>ResponseLogginFilter</em>.</p>
+<blockquote>
+<p><strong>RequestLoggingFilter</strong> will log the request before it’s passed to HTTP Builder. This filter will only log things specified in the request specification.</p>
+<p><strong>ResponseLoggingFilter</strong> will print the response body if the response matches a given status code.</p>
+</blockquote>
+<p>I have added a condition in response specification to check that the response time to be less than <em>20000 milliseconds</em>, which means if it takes longer than that, the tests will fail.</p>
+<h2 id="Setting-up-the-Tests"><a href="#Setting-up-the-Tests" class="headerlink" title="Setting up the Tests"></a>Setting up the Tests</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/4_testsetupclass.png" class="" title="Test Setup Class">
+<p>&nbsp;</p>
+
+<p>Before running any of the tests, some basic setup needs to be done for which I have created the<br><em>testSetup()</em> method. I have instantiated the booking data builder and token builder classes and have also created instances for creating the <em>new booking data, updated booking, partial update booking data</em> builders. So, before any tests are run these classes are ready for being used in the tests. But before all, the <em>setup()</em> method from <em>BaseSetup</em> class will be called as the method is tagged with annotation @BeforeClass</p>
+<blockquote>
+<p><em>Note: I have created an int bookingId variable which will store the booking Id value once a new booking is created.</em></p>
+</blockquote>
+<h2 id="Creating-a-Booking"><a href="#Creating-a-Booking" class="headerlink" title="Creating a Booking"></a>Creating a Booking</h2><p>Before I begin talking about creating a new Booking, let me first make you understand how I have used builder pattern to create body for the post request, as it is required for creating a booking.</p>
+<h2 id="Booking-Data-Builder"><a href="#Booking-Data-Builder" class="headerlink" title="Booking Data Builder"></a>Booking Data Builder</h2><p>Following is the image of the curl request that is used for creating a booking. Considering the data that is passed in the post body, I have generated the <strong>pojo class</strong> which will help in parsing the json data in the post request.</p>
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/5_curlforpost.png" class="" title="Curl for Post Request">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/6_bookingdata.png" class="" title="Booking Data class">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/7_bookingdates.png" class="" title="Booking Dates Class">
+<p>&nbsp;</p>
+
+<p><strong>Pojo class</strong> <em>BookingData</em> has another class <em>BookingDates</em> in it. If you look closely in the post body data, you will see an object <em>BookingDates</em> which has the field <em>checkin</em> and <em>checkout</em>, hence new <em>pojo</em> class was created to handle this fields as per json data required for creating a new booking.</p>
+<blockquote>
+<p><em>Note the annotations @Data and @Builder above the pojo class. These are lombok annotations, as discussed in the Getting Started section above.</em></p>
+</blockquote>
+<h2 id="Building-the-test-data"><a href="#Building-the-test-data" class="headerlink" title="Building the test data"></a>Building the test data</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/8_bookingdatabuilder.png" class="" title="Booking Data Builder Class">
+<p>&nbsp;</p>
+
+<p>To generate the test data on run time, first of all we need to <em>create an instance of Faker class</em>. Once instance of faker class is created we can start using it for creating the data. Next, we can call the <em>BookingData</em> builder class and use the method <em>builder()</em> to build the test data and once you press <em>dot</em> and press <em>Ctrl+Space</em> IDE will show you the list of variables you have set inside the <em>BookingData</em> class like <em>firstname, lastname, totalprice, etc..</em> which you can use and set the test data by passing the required methods of <em>faker class</em>, so your test data gets generated on runtime once the tests are run.</p>
+<h2 id="Creating-a-new-Booking"><a href="#Creating-a-new-Booking" class="headerlink" title="Creating a new Booking"></a>Creating a new Booking</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/9_createbooking.png" class="" title="Create Booking">
+<p>&nbsp;</p>
+
+<p>Post requests are used to create new data in the system. It is very simple to use the rest-assured methods to create a post request. Like I said in the very beginning, tests are written in BDD style using rest-assured so its quite simple to understand this framework and write the tests. It begins with given() method and then continues further using <em>when(), post(), get(), put(), delete(), etc..</em> Tests can be written in <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fluent_interface">fluent interface</a> style with chaining the methods one after another which actually helps in reading the intention of the method clearly and even a beginner would be able to understand what actually the tests is going to perform.</p>
+<p>In the create booking test, <em>(checkout the image above)</em>, I have used the <em>given()</em> method then called the <em>body()</em> method which takes the <em>post body</em> as parameter and once this is done, <em>when()</em> method is called and then using <em>post()</em> request method passing the path of the API endpoint.</p>
+<p>Next, we can start the assertions after calling <em>then()</em> method and checking if <em>status code is 200</em>. Once this assertion is passed, we can make sure that the Post API is working fine and we are good to move<br>ahead asserting the response body.</p>
+<blockquote>
+<p><em>If status code is not matching 200 then test will fail and it doesn’t make any sense to check the response body.</em></p>
+</blockquote>
+<p>Now, comes an important point, as per the test strategy we defined in the start of this blog, Saving the <em>bookingid</em> in <code>bookingId</code> variable.</p>
+<p>For doing that I have used the <em>extract()</em> method and extracted the <em>bookingid</em> from response body using <em>path()</em> method and assigned it to variable <code>bookingId</code>.</p>
+<p>If we run the Post API tests now, it will generate the booking and save the <em>bookingid</em> in <code>bookingId</code> variable.</p>
+<blockquote>
+<p><em>Note: Only the endpoint is passed in the post() method, the baseURI will be picked from BaseSetup configuration class which is extended in the test class. BaseSetup class will also set the required headers in the test.</em></p>
+</blockquote>
+<h2 id="Updating-a-Booking"><a href="#Updating-a-Booking" class="headerlink" title="Updating a Booking"></a>Updating a Booking</h2><p>For updating a resource, PUT API is used. PUT requests needs all the data in the body to be sent, you can not send only the required fields you need to update unlike PATCH.</p>
+<p>The pattern of calling the rest-assured methods for PUT request remains the same. First you need to call <em>given()</em> after that <em>body()</em> and passing the put <em>body</em> as parameter, then calling <em>when()</em> method. Here, since there is an additional requirement of passing the token without which the PUT request won’t be successful.<br>Let me show you how I have handled this in the test.</p>
+<h2 id="Token-Builder"><a href="#Token-Builder" class="headerlink" title="Token Builder"></a>Token Builder</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/10_curlfortokenrqst.png" class="" title="Curl for Token Request">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/11_tokencreds.png" class="" title="Token Credentials class">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/12_tokenbuilderclass.png" class="" title="Token Builder class">
+<p>&nbsp;</p>
+
+<p>Looking at the curl request for creating an AUTH token, we see only 2 fields in namely, <code>username</code> and <code>password</code> which the API will consume and provide us with the <strong>AUTH Token</strong> which will be further used in PUT, PATCH and DELETE API requests.</p>
+<blockquote>
+<p><em>What is an AUTH Token?</em></p>
+<p><em>Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization.</em></p>
+<p><em>Reference - <a target="_blank" rel="noopener" href="https://auth0.com/docs/secure/tokens/access-tokens">https://auth0.com/docs/secure/tokens/access-tokens</a></em></p>
+</blockquote>
+<h2 id="Token-Generation"><a href="#Token-Generation" class="headerlink" title="Token Generation"></a>Token Generation</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/13_generatetoken.png" class="" title="Generate Token Method">
+<p>&nbsp;</p>
+
+<p>In the <em>TokenBuilder</em> class I have passed the actual value for the fields username and password. Since this is a demo project hence I have passed the static values in the class itself while building the data. Recommended way to pass the secure data is to use the <em>String Interpolation</em> and pass the data on run time.</p>
+<p>As the token generated would be used in 3 different requests, hence it is recommended to generate a single method which would be called in the different requests instead of writing duplicate codes to generate token every time. Having said that, I have created a <em>private method generateToken()</em> which consumes the credentials and returns the token in String format.</p>
+<h2 id="Updating-the-Booking"><a href="#Updating-the-Booking" class="headerlink" title="Updating the Booking"></a>Updating the Booking</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/14_updatebookingtest.png" class="" title="Update Booking test">
+<p>&nbsp;</p>
+
+<p>As mentioned above, the pattern to write the test is same as for Post API, the only difference here is, we are calling <em>put()</em> method and passing the <code>/booking/</code> endpoint with <code>bookingId</code> which we extracted at the time of creating a booking. Also to note the <em>header()</em> method which passes the <em>Cookie key and AUTH token value</em>.<br>Assertions are made using the newly created <em>updatedBooking</em> data builder.</p>
+<h2 id="Updating-a-Booking-Partially"><a href="#Updating-a-Booking-Partially" class="headerlink" title="Updating a Booking Partially"></a>Updating a Booking Partially</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/15_updatebookingpartially.png" class="" title="Update Booking Partially test">
+<p>&nbsp;</p>
+
+<p>Using PATCH request you can modify only a few respective fields which needs to be updated, we don’t need to send all the fields like we do in PUT request.</p>
+<p><code>firstname</code> and <code>totalprice</code> fields are updated using PATCH request.The pattern to write the <em>Partial update of the booking</em> test is the same as we did for Update booking test. Starting with <em>given()</em> method and then asserting the status code and finally the response body. Taking a close look at the <em>image above for partial update of the booking</em> test you will notice that in assertions I have used the instance of <em>partialUpdateBooking builder</em> for asserting the <code>firstname</code> and <code>totalprice</code> values, for rest of the fields instance of <code>updateBooking</code> builder is used, as it is the latest builder used for the test data. Remember, we updated the booking after creating it!</p>
+<h2 id="Deleting-a-Booking"><a href="#Deleting-a-Booking" class="headerlink" title="Deleting a Booking"></a>Deleting a Booking</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/16_deletebookingtest.png" class="" title="Delete Booking test">
+<p>&nbsp;</p>
+
+<p>Now, comes the final stage of the test strategy we planned!<br>Its time now to delete the booking and check if the delete API is working as expected. The other way of looking at this is, we should always clear the data we generated using automated tests, if we don’t do it, we would be creating junk data in the system which would be useless and unnecessarily increase our server load and size of the DB, since every test run will keep on generating new set of booking records.</p>
+<p><em>delete()</em> method is used for <em>deleting the booking</em>. We are using the same <code>bookingId</code> which we saved while creating the booking, so we delete the same booking which we created using this end to end tests. Once delete API is called we assert that it should return <em>status code 201(This is as per the API documentation of restful booker)</em> from which we come to know that booking was deleted successfully. Ideally for <em>delete status code returned is</em> <strong>204</strong>.</p>
+<p>To make sure that booking was actually deleted, I have created one more test which will call the Get request and try to fetch the booking using the <code>bookingId</code> which was deleted and here we expect that it should return <strong>status code 404</strong> which means data was not found and it assures us that the booking was actually deleted.</p>
+<p>This marks the end of our end to end test scenarios!</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>To Conclude, we performed end to end for the restful booker APIs by creating a new booking, updating the newly created booking, partially updating the booking by modifying the <em>firstname</em> and <em>totalprice</em> values and then finally deleting the booking created. We also added a method which would generate <em>token</em> so we could use that method while updating and deleting the booking entries, as those entries require user authorization.</p>
+<p>Hope you got a better understanding of rest-assured framework and how to perform API Testing and also test automation strategy!</p>
+<p>Happy Testing!</p>
+<h2 id="Github-Repository"><a href="#Github-Repository" class="headerlink" title="**Github Repository"></a>**Github Repository</h2><p>&nbsp;</p>
+<img src="/2022/03/14/endtoendapitestingrest-assured/17_githubrepo.png" class="" title="Github Repository">
+<p>&nbsp;</p>
+
+<p>All of the code which is showcased above is located in this <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/rest-assured-examples">github repository</a>.<br>Do mark a ⭐ and make the project popular so it reaches to the people who want to learn and upgrade and get better understanding about API Test Automation using rest-assured.</p>
+<blockquote>
+<h2 id="Paid-Trainings"><a href="#Paid-Trainings" class="headerlink" title="Paid Trainings"></a>Paid Trainings</h2><p><em>Contact me for Paid trainings related to Test Automation and Software Testing</em>.</p>
+</blockquote>
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
