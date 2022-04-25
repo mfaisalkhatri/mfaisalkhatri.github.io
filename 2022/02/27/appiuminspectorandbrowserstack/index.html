@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>Inspecting elements of an app using Appium Inspector and BrowserStack! | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Medium" target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri"><i class="iconfont icon-medium"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>Inspecting elements of an app using Appium Inspector and BrowserStack!</h1><time class="created-date" datetime="2022-02-27T11:38:52.000Z">2022-02-27</time><div class="sharethis-inline-share-buttons"></div><p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/cover_image.png" class="" title="Cover Image">
+<p>&nbsp;</p>
+
+<p>Appium is not a new name in the automation world and every automation engineer knows it well as it is widely used for automating android and iOS apps.</p>
+<p>Before I begin writing about inspecting the elements of the app, let me first introduce you to appium.</p>
+<h2 id="What-is-Appium"><a href="#What-is-Appium" class="headerlink" title="What is Appium?"></a>What is Appium?</h2><p><a target="_blank" rel="noopener" href="https://appium.io/">Appium</a> is an open source test automation framework for use with native, hybrid and mobile web apps.<br>It drives iOS, Android, and Windows apps using the WebDriver protocol.</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>Appium supports iOS as well as Android apps. To install appium and get started with using it there are some steps which you need to follow to set it up on different OS versions like Windows and macOS.</p>
+<p><a target="_blank" rel="noopener" href="https://wasiqbhamla.github.io/website/blog/2017/04/24/appium-automation-ios">Checkout this blog to learn how to setup appium on macOS</a><br><a target="_blank" rel="noopener" href="https://wasiqb.wordpress.com/2017/04/13/beginners-guide-to-appium-automation-with-java-for-android-apps-part-1/">Checkout this blog to learn how to setup appium on Windows</a></p>
+<h2 id="What-is-Appium-Inspector"><a href="#What-is-Appium-Inspector" class="headerlink" title="What is Appium Inspector?"></a>What is Appium Inspector?</h2><p><a target="_blank" rel="noopener" href="https://github.com/appium/appium-inspector">Appium Inspector</a> is basically just an Appium client (like WebdriverIO, Appium’s Java client, Appium’s Python client, etc…) with a user interface. There’s an interface for specifying which Appium server to use, which capabilities to set, and then interacting with elements and other Appium commands once you’ve started a session.</p>
+<h2 id="Download-and-Installation"><a href="#Download-and-Installation" class="headerlink" title="Download and Installation"></a>Download and Installation</h2><p>You can download appium inspector from this link and as per the OS you have you can go ahead and install it.</p>
+<blockquote>
+<p><em>Download <a target="_blank" rel="noopener" href="https://github.com/appium/appium-inspector/releases/download/v2022.2.1/Appium-Inspector-windows-2022.2.1.exe">Appium-Inspector-windows-2022.2.1.exe</a> for windows and install it.</em> &gt; <em>Download <a target="_blank" rel="noopener" href="https://github.com/appium/appium-inspector/releases/download/v2022.2.1/Appium-Inspector-mac-2022.2.1.dmg">Appium-Inspector-mac-2022.2.1.dmg</a> for macOS and install it.</em></p>
+</blockquote>
+<h2 id="What-is-BrowserStack"><a href="#What-is-BrowserStack" class="headerlink" title="What is BrowserStack?"></a>What is BrowserStack?</h2><p><a target="_blank" rel="noopener" href="https://www.browserstack.com/">BrowserStack</a> is a cloud Service Platform provides instant access to 3,000+ real mobile devices and browsers on a highly reliable cloud infrastructure that effortlessly scales as testing needs grow. With BrowserStack, Dev and QA teams can move fast while delivering an amazing experience for every customer.</p>
+<h2 id="What-do-we-need-to-do-to-inspect-element-of-an-app-using-BrowserStack"><a href="#What-do-we-need-to-do-to-inspect-element-of-an-app-using-BrowserStack" class="headerlink" title="What do we need to do to inspect element of an app using BrowserStack?"></a>What do we need to do to inspect element of an app using BrowserStack?</h2><h3 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h3><p>Consider a scenario where you need to inspect elements of the app for automating it and you don’t have the device physically available with you! Unless you have the locators of the app available you cannot proceed with automation stuff.</p>
+<p>This has happened with me a lot like I own an android device and its pretty easy for me to connect using that device and find out the locators and write the automation tests. But in case if I want to write the automation tests for an iOS app then I am not in a good position to start with as I don’t own an iphone device and very much I am blocked to start with testing and writing the automation tests for it.</p>
+<h3 id="So-what-do-we-do"><a href="#So-what-do-we-do" class="headerlink" title="So what do we do?"></a>So what do we do?</h3><p>In such a situation, the cloud services like BrowserStack comes to the rescue where we can take leverage of the physical devices on BrowserStack to actually inspect the locators.</p>
+<h3 id="Uploading-the-app-on-BrowserStack"><a href="#Uploading-the-app-on-BrowserStack" class="headerlink" title="Uploading the app on BrowserStack"></a>Uploading the app on BrowserStack</h3><p>The first step is to upload the app to BrowserStack so we could use it for testing. For uploading the app, we need to hit an <a target="_blank" rel="noopener" href="https://www.browserstack.com/docs/app-automate/api-reference/appium/apps#upload-an-app">API which is provided by BrowserStack</a>. Once you hit the API, you should get an <code>app_url</code> in response which can be updated in the <em>app path</em> in appium desired capabilities and used further to start the Appium session on BrowserStack.</p>
+<p>To upload the app you must be an <strong>authorized user and have an active account on BrowserStack</strong>,<br>as <em>username</em> and <em>accesskey</em> are required to upload the app.</p>
+<p>I am using Postman to upload the app in this example.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/postman_api_upload.png" class="" title="App Upload using Postman">
+<p>&nbsp;</p>
+
+<h2 id="Appium-Inspector"><a href="#Appium-Inspector" class="headerlink" title="Appium Inspector"></a>Appium Inspector</h2><p>Start the Appium Inspector and <strong>Select Cloud Provider &gt;&gt; BrowserStack</strong></p>
+<p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/appium_inspector.png" class="" title="Appium Inspector app">
+<p>&nbsp;</p>
+
+<p>We need to provide the appium desired capabilities for starting the respective device with the app as per the requirement. In this example, I am running the app on <em>Samsung Galaxy S21 Plus</em> on <em>Android Version 11.0</em>. Since I have already uploaded the app to BrowserStack, I would be using the same <strong>app_url</strong> in the <em>app path</em> in appium desired capabilities. Since, this is a demo, I am using android phone, you can use any other device like iphone or any other Samsung device, on BrowserStack as per your need.</p>
+<p><strong>App Details:</strong> I am using android version of <a target="_blank" rel="noopener" href="https://github.com/saucelabs/sample-app-mobile/releases">Saucelabs demo app</a><br>Here are the appium desired capabilities I have used:</p>
+<pre><code>&#123;
+  &quot;platformName&quot;: &quot;Android&quot;,
+  &quot;appium:platformVersion&quot;: &quot;11.0&quot;,
+  &quot;appium:deviceName&quot;: &quot;Samsung Galaxy S21 Plus&quot;,
+  &quot;appium:automationName&quot;: &quot;UiAutomator2&quot;,
+  &quot;appium:app&quot;: &lt;app_url recieved in response on uploading the app&gt;
+&#125;
+</code></pre>
+<p>You are all set now to <strong>Start</strong> the Session and inspect the element! Click on Start Session button to start the session and inspect the elements.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/session_started.png" class="" title="Appium Inspector Session Started">
+<p>&nbsp;</p>
+
+<p>Lets inspect the username field and see what all locators we get</p>
+<p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/inspecting_locator_username.png" class="" title="Inspecting locator for username field">
+<p>&nbsp;</p>
+
+<p>We see the <em>accessibility id</em> as <em>test-username</em> which can be used in the test for locating <em>username</em> field.<br>Now, lets inspect the password field and login button to check for their respective locators.</p>
+<p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/inspecting_locator_password.png" class="" title="Inspecting locator for password field">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<img src="/2022/02/27/appiuminspectorandbrowserstack/inspecting_locator_loginbtn.png" class="" title="Inspecting locator for login button">
+<p>&nbsp;</p>
+
+<p>We see the <em>accessibility id</em> as <em>test-Password</em> for <em>Password</em> field and <em>test-LOGIN</em> as <em>accessibility id</em> for <em>Login</em> button.</p>
+<blockquote>
+<p><em>Though we also see xpath as a locator, however, its not recommended to use xpath locator and always ask the developers to add a specific test-id or accessibility id for locating elements, incase if there are none.</em></p>
+</blockquote>
+<p>Now, using these locators we are now all set to write the automation test script for login scenario. Similarly, we can use this session for fetching locators for another fields within the app.</p>
+<p>Hope, you got to know how to inspect the elements by running the app on BrowserStack.<br>Please comment below in case if you need any help or clarification, I would be happy to help!</p>
+<p>Happy Testing!</p>
+<p>&nbsp;</p>
+
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
