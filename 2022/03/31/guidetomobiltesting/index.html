@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>Guide to Mobile Testing | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Medium" target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri"><i class="iconfont icon-medium"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>Guide to Mobile Testing</h1><time class="created-date" datetime="2022-03-31T10:00:21.000Z">2022-03-31</time><div class="sharethis-inline-share-buttons"></div><p>&nbsp;</p>
+<img src="/2022/03/31/guidetomobiltesting/cover_image.png" class="" title="Cover Image">
+<p>&nbsp;</p>
+
+<p>As everyone knows, Mobile industry has taken all over the world and is the fast emerging industry in terms of technology and business. It is possible to do all the tasks using Mobile phone for which earlier we had to use computer. Using Mobile phone, we can take photos, view movies, perform transactions, make and receive payments, talk and chat over apps, and the list goes on…</p>
+<p>With the technology emerging so fast and the clients demanding the release very often it is necessary to test the application built for use on mobile devices to be tested thoroughly before it is released to end users.</p>
+<h2 id="Quality-is-the-Key"><a href="#Quality-is-the-Key" class="headerlink" title="Quality is the Key"></a>Quality is the Key</h2><p>We need to check everything and all the possible permutations and combinations so we do not let any loopholes open. Since Mobile devices have personal data of the end users stored as well so its necessary to perform checks with respect to Security and Data Integrity.</p>
+<p>Checking the performance of the app is equally important as today people are more interested in the speed of the app. Functionality is fine, but if the apps response time is too long, it might not attract the users. Hence, performance testing of the app is also an important factor to consider.</p>
+<p>Coming to testing Mobile applications, I think we should figure out the Test Strategy first, as it will help us break down the testing phases and perform testing with quality and will help us avoid missing the tests.</p>
+<p>&nbsp;</p>
+<img src="/2022/03/31/guidetomobiltesting/mobile_test_strategy.png" class="" title="Mobile Test Strategy">
+<p>&nbsp;</p>
+
+<h2 id="Defining-a-Test-Strategy"><a href="#Defining-a-Test-Strategy" class="headerlink" title="Defining a Test Strategy"></a>Defining a Test Strategy</h2><p>Lets be clear about the application under test whether it is a Native Mobile app, Hybrid app or a Mobile Web app.</p>
+<h3 id="What-is-a-Native-Mobile-app"><a href="#What-is-a-Native-Mobile-app" class="headerlink" title="What is a Native Mobile app?"></a>What is a Native Mobile app?</h3><p>A Native app is one that is installed directly onto the smartphone and can work, in most cases, with no internet connectivity depending on the nature of the app. Native apps are installed through an application store (such as Google Play or Apple’s App Store).</p>
+<h3 id="What-is-Mobile-Web-app"><a href="#What-is-Mobile-Web-app" class="headerlink" title="What is Mobile Web app?"></a>What is Mobile Web app?</h3><p>Mobile web apps are web apps optimized for a good phone experience. They aren’t mobile applications, but websites written in HTML/CSS and run by a browser. While they may be designed to resemble the feel of smartphone apps, they don’t have much in common.</p>
+<h3 id="What-is-a-Hybrid-Mobile-app"><a href="#What-is-a-Hybrid-Mobile-app" class="headerlink" title="What is a Hybrid Mobile app?"></a>What is a Hybrid Mobile app?</h3><p>The concept of the hybrid app is a mix of native and web-based apps. These are made to support web and native technologies across multiple platforms. Moreover, these apps are easier and faster to develop.</p>
+<blockquote>
+<p><em><strong>Hybrid Mobile app = Native app + Mobile Web app.</strong></em></p>
+</blockquote>
+<p>For defining the test strategy in our case, lets consider the case of a hybrid mobile app.</p>
+<p>Before I jump into the details of testing lets discuss some high level points related to the testing types which should be considered to test the mobile app.</p>
+<p>&nbsp;</p>
+<img src="/2022/03/31/guidetomobiltesting/testing_types.png" class="" title="Testing Types">
+<p>&nbsp;</p>
+
+<h2 id="Testing-Types"><a href="#Testing-Types" class="headerlink" title="Testing Types:"></a>Testing Types:</h2><p>In an ideal scenario, considering hybrid app, I think following testing types should be considered:</p>
+<ol>
+<li>Functional Testing.</li>
+<li>Performance Testing</li>
+<li>Security Testing</li>
+<li>Usability Testing</li>
+<li>UI/UX Testing</li>
+</ol>
+<blockquote>
+<p><em><strong>I have taken the testing types considering my experience with Mobile projects, you can add or subtract the types based on your requirements.</strong></em></p>
+</blockquote>
+<h2 id="When-and-How-do-I-start-testing"><a href="#When-and-How-do-I-start-testing" class="headerlink" title="When and How do I start testing?"></a>When and How do I start testing?</h2><p>Since we are in the age where agile is religiously followed in today’s software world, it is better to start testing as early as possible.</p>
+<p>Testing should be done in every phase of software development lifecycle and not only when the feature is fully developed.</p>
+<p>Being said that, always make sure that the developer is writing the Unit tests. Integration and Service layers tests should also be covered. Writing tests only doesn’t help, code coverage report should show that unit tests coverage are at least greater than 80% which could gradually be increased to 100%, if there is a possibility. Its good to have a pipeline in place which helps us monitoring the lifecycle easily and take corrective actions at every stage. So, Unless the build is green, its not good to move ahead with testing and make the required fixes as soon as possible.</p>
+<p>&nbsp;</p>
+<img src="/2022/03/31/guidetomobiltesting/test_planning.png" class="" title="Test Planning">
+<p>&nbsp;</p>
+
+<h2 id="Test-Plan"><a href="#Test-Plan" class="headerlink" title="Test Plan"></a>Test Plan</h2><p>Its good to have a test plan in place, as it would be easier to keep a check on all the test activities, so we don’t miss anything and perform the testing smoothly and provide quality output.</p>
+<blockquote>
+<p><em><strong>The first and most important case is whether user is able to install the app successfully using PlayStore/App Store.</strong></em> <em><strong>Next, is to check if the app is opening correctly after the successful installation.</strong></em></p>
+</blockquote>
+<p><strong>Here is a general list of all the test activities we need to take care of while testing the mobile app:</strong></p>
+<ol>
+<li><p>Checkout for the mobile OS platforms that are widely used in the region where the app is expected to be released.</p>
+</li>
+<li><p>Based on the result that is derived from Step 1 — Checkout which all are the popular mobile devices in that region and accordingly make a list of all the popular devices.</p>
+</li>
+<li><p>Out of the list generated in Step 2, take top 5 devices and consider them for testing purpose. Also, make sure you take the combination of big and small screen sizes so you could test out for the UI/UX as well. Testing different screen sizes is an important aspect as it helps with the usability of the app.l</p>
+</li>
+<li><p>Its important to consider the OS versions as well, so for example lets say for the region and OS that was considered previously in above Steps, iOS version 14 and 15 are the popular ones in that region. So, in that case make sure you are testing on iOS versions 14 and 15. One more important thing which most of the time gets missed is the minimum version support. So, in case your app supports iOS version 12 as minimum version, make sure you do a round of regression and sanity testing on iOS version 12 on big and small screen devices to keep a check on quality. As per my experience, around 1–2% of some nasty bugs comes from this area.</p>
+</li>
+<li><p>From the automation point of view, it would be good if you could run your tests in parallel on the selected devices and select some latest devices as per the criteria set in above steps. So, from regression point of view, all your end to end tests run in automation frequently and gives you an alarm in case if anything fails.</p>
+</li>
+<li><p>Specific tests which couldn’t be covered as a part of automation due to certain reasons, as we all know that not everything could be covered as a part of automation, that could be tested in manual exploratory tests.</p>
+</li>
+</ol>
+<h3 id="Some-additional-checks-which-you-could-do-in-the-mobile-app-is-to-check"><a href="#Some-additional-checks-which-you-could-do-in-the-mobile-app-is-to-check" class="headerlink" title="Some additional checks which you could do in the mobile app is to check:"></a>Some additional checks which you could do in the mobile app is to check:</h3><ol>
+<li><p>While moving from one screen to another the same APIs doesn’t get called multiple times.</p>
+</li>
+<li><p>Debouncing could also be checked as it would eventually affect the performance of the app.<br>For e.g. Doing a pull to refresh on a particular screen multiple times and checking of the request is sent every time a pull to refresh is done. It is expected here that though user does a pull to refresh multiple times, requests for refreshing the screen should only be sent at certain intervals and not every time. This will make sure that the performance of the app is not getting hit due to multiple requests within fraction of seconds.</p>
+</li>
+<li><p>Its good to keep an eye on the UI fonts/colors and text size as in mobile apps it matters a lot to the end users and even a sight change in the background color/font/font size will affect the overall usage of the app. So, checking for the uniformity of color combinations, fonts, font size etc is necessary to be tested.</p>
+</li>
+<li><p>I would suggest to involve the UI/UX folks in the testing session so they could fairly show us the issues/difference in case if there is any related to it.</p>
+</li>
+<li><p>Check out by running the app manually in 1–2 different devices to check for the functionality and performance of the app.</p>
+</li>
+<li><p>A check should also be kept on the logs getting generated for all the steps that are performed in the front-end. As it would help easy debugging of the issues in case if any arises in production.</p>
+</li>
+</ol>
+<p>7.Coming to logs, do check if any <a target="_blank" rel="noopener" href="https://www.imperva.com/learn/data-security/personally-identifiable-information-pii/">personal info(PII)</a> is not getting logged in the logs as it would lead to legal consequences. 8. We can also check for the navigation of the app and the opening of the links within the web view, since its an hybrid app, we should expect that all the links within the app should get open in web view and not on the external browser.</p>
+<ol start="9">
+<li><p>Check out if the app is sending notifications correctly and those notifications are displayed correctly in the notifications area of the phone.</p>
+</li>
+<li><p>We can check if the notification messages are navigating user to the respective area in the app.</p>
+</li>
+<li><p>If the user is running some other app and notifications for this app appears in between, how does it look like? Whether it is user friendly, other this might be a pain area for end user which ultimately may lead to user uninstalling the app.</p>
+</li>
+</ol>
+<h3 id="Additional-tests-which-you-could-perform-for-checking-the-overall-quality-of-the-app"><a href="#Additional-tests-which-you-could-perform-for-checking-the-overall-quality-of-the-app" class="headerlink" title="Additional tests which you could perform for checking the overall quality of the app."></a>Additional tests which you could perform for checking the overall quality of the app.</h3><h3 id="Scenarios-related-to-Mobile-Battery-usage"><a href="#Scenarios-related-to-Mobile-Battery-usage" class="headerlink" title="Scenarios related to Mobile Battery usage:"></a>Scenarios related to Mobile Battery usage:</h3><ol>
+<li><p>Checking if the app is not consuming a lot of battery, as it would lead to the end user uninstalling the app. It is expected that App should be using minimum battery while working.</p>
+</li>
+<li><p>Check the battery usage of the app in the background. It should also be minimal.</p>
+</li>
+</ol>
+<h3 id="Scenarios-related-to-Mobile-Device-left-Idle"><a href="#Scenarios-related-to-Mobile-Device-left-Idle" class="headerlink" title="Scenarios related to Mobile Device left Idle:"></a>Scenarios related to Mobile Device left Idle:</h3><ol>
+<li><p>If you have the login functionality implemented in the app, you can check if the app is not logging out the user after the app has been left idle by the user for some time and it goes into background.</p>
+</li>
+<li><p>If you have a payment related app and say for example which performing a payment if the mobile phone is left idle for some time then the app should function smoothly and perform the desired transaction successfully.</p>
+</li>
+<li><p>In case of mobile phone left idle as well, the App should not consume huge amount of battery and also we can check if the phone does not get heated, as it would lead to negative reviews and affect the overall business.</p>
+</li>
+<li><p>What happens when user keeps the app in background and tries to use it after a while from the background itself from the point where he left. This is purely a technical scenario which can be discussed with the team and accordingly implemented as per the technical requirement.</p>
+</li>
+</ol>
+<h3 id="Scenarios-related-to-locking-the-phone"><a href="#Scenarios-related-to-locking-the-phone" class="headerlink" title="Scenarios related to locking the phone:"></a>Scenarios related to locking the phone:</h3><ol>
+<li><p>We can also check for the phone lock scenario, like, for example, while fetching any data within the app, the app takes longer, and in meanwhile the users phone gets locked, then the app should remain active in background and perform the user desired transaction successfully.</p>
+</li>
+<li><p>Another scenario is, if user intentionally locks the phone during an ongoing transaction, in that case as well it should be expected that the transaction is completed successfully and does not get cancelled.</p>
+</li>
+<li><p>Another scenario to check would be if mobile phone is locked while using the app, again we can check for the battery usage which should be minimum.</p>
+</li>
+</ol>
+<h3 id="Scenarios-related-to-internet-connectivity-WiFi-and-Location-services"><a href="#Scenarios-related-to-internet-connectivity-WiFi-and-Location-services" class="headerlink" title="Scenarios related to internet connectivity/WiFi and Location services:"></a>Scenarios related to internet connectivity/WiFi and Location services:</h3><ol>
+<li><p>We can check that app does not break when in middle of some transaction when the internet on the phone goes off. Here, it is expected that appropriate screen with “No Internet” banner should be shown to the user.</p>
+</li>
+<li><p>Next, we can check when the internet is back and user is online once again, in that case, app should resume working correctly and “No Internet” banner should not be displayed.</p>
+</li>
+<li><p>User should be able to use the app while being connected to WiFi as well as mobile internet.</p>
+</li>
+<li><p>Another point to check would be by connecting the mobile phone to mobile hot-spot and checking if the app works smoothly, though this scenario need not be deep tested, however it is good to have this test performed.</p>
+</li>
+<li><p>We can check by suddenly turning on the Airplane mode and check the behavior of the app. If the app has some dependency like an app related to Smart Watch, the device should get disconnected without any error message and it should be smooth without crashing the app.</p>
+</li>
+<li><p>Similarly, by turning the Airplane mode Off, everything should be resuming back to normal with minimum user intervention required.</p>
+</li>
+<li><p>We can check by turning the Location services ON/OFF in the phone and checking if the app is able to discover that the location services are turned ON/OFF respectively, and showing appropriate permission message popup in the app.</p>
+</li>
+</ol>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>To conclude, all the things listed in this blog are from my personal experience and if you need you can add more tests as per your requirements. This document describes a way of how you can start testing and what all things you need to consider.</p>
+<p>I have tried my best to cover all the aspects with regards to mobile testing, In case, if you need any help on any topic related to Mobile testing or automation please do reach out to me.</p>
+<p>&nbsp;</p>
+
+<h3 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://www.toptal.com/android/developing-mobile-web-apps-when-why-and-how">https://www.toptal.com/android/developing-mobile-web-apps-when-why-and-how</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.app-press.com/blog/web-app-vs-native-app">https://www.app-press.com/blog/web-app-vs-native-app</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mobile_app">https://en.wikipedia.org/wiki/Mobile_app</a></li>
+</ol>
+<p>&nbsp;</p>
+
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
