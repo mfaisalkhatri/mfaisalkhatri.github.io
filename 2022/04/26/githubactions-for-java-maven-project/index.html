@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>How to setup Github Actions for Java with Maven project? | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Medium" target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri"><i class="iconfont icon-medium"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>How to setup Github Actions for Java with Maven project?</h1><time class="created-date" datetime="2022-04-26T04:55:36.000Z">2022-04-26</time><div class="sharethis-inline-share-buttons"></div><p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/cover_image.png" class="" title="Cover Image">
+<p>&nbsp;</p>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>I had recently completed a POC on Selenium 4 latest features where I have all the example codes of How to use Selenium WebDriver with Java. I was running the tests in my local, however there was a need to have a CI/CD pipeline in place to keep a check that the new code merges are not breaking any existing code.<br>And since my repository is setup on Github, it was easy to configure the pipeline using Github Actions.</p>
+<h2 id="What-is-github-actions"><a href="#What-is-github-actions" class="headerlink" title="What is github actions?"></a>What is github actions?</h2><p>As per the <a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions">Github actions website</a>, GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production.</p>
+<p>GitHub Actions goes beyond just DevOps and lets you run workflows when other events happen in your repository. For example, you can run a workflow to automatically add the appropriate labels whenever someone creates a new issue in your repository.</p>
+<p>GitHub provides Linux, Windows, and macOS virtual machines to run your workflows, or you can host your own self-hosted runners in your own data center or cloud infrastructure.</p>
+<h2 id="How-to-setup-github-actions-workflow"><a href="#How-to-setup-github-actions-workflow" class="headerlink" title="How to setup github actions workflow?"></a>How to setup github actions workflow?</h2><p>Setting up github actions is very easy, there is no complex tasks or files that you need to create. It can be setup in the following simple steps:</p>
+<h3 id="Step-1-Create-a-Github-Repo-and-check-in-all-your-code-on-Github"><a href="#Step-1-Create-a-Github-Repo-and-check-in-all-your-code-on-Github" class="headerlink" title="Step 1 - Create a Github Repo and check-in all your code on Github"></a>Step 1 - Create a Github Repo and check-in all your code on Github</h3><p>Creating and checking all your code on Github is again simple task. Checkout the <a target="_blank" rel="noopener" href="https://docs.github.com/en/get-started/quickstart/create-a-repo">link here</a> which will help you to create a repository and check in your code on github.</p>
+<h3 id="Step-2-Go-To-Actions-Tab-and-select-appropriate-workflow-depending-on-your-programming-language"><a href="#Step-2-Go-To-Actions-Tab-and-select-appropriate-workflow-depending-on-your-programming-language" class="headerlink" title="Step 2 - Go To Actions Tab and select appropriate workflow depending on your programming language"></a>Step 2 - Go To Actions Tab and select appropriate workflow depending on your programming language</h3><p>Once the Github repository is created and all the code is checked-in. You will have to click on the <code>Actions</code> Tab as shown in the pic below.</p>
+<p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/action_select_workflow.PNG" class="" title="Action Step one">
+<p>&nbsp;</p>
+
+<p>Next, you need to select the workflow depending on the programming language of your project. Here, I would be selecting <code>Java with Maven</code> since my project is Maven based. I have selected the second option in the first row and clicked on Configure.</p>
+<p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/create_workflow.PNG" class="" title="Workflow section">
+<p>&nbsp;</p>
+
+<p>Once you click on <code>Configure</code> you will be taken to a page where github will auto create a workflow file as per the option you selected and accordingly if you want, you can make the changes in the file as per your needs to install packages, build the project and run the tests. It is fully customizable and provides all the implementation in your hands to choose and add the steps as per your requirement.</p>
+<p>Once you have updated all the steps and the commands you want to run within the workflow you can commit the changes by clicking on Green button called <code>Start Commit</code> button on top right hand.<br>It will take you to the <code>Actions</code> Tab where you will be able to see the Workflow in Action which you just created.</p>
+<p>On the left hand side you will be shown the workflow name, in my case it is <code>Java CI with Maven</code> and on the right hand side in the Tab you should be seeing the workflow running and it would be <code>a yellow dot with commit message</code>. My workflow is successful and complete hence in the image below you see a green tick beside the workflow run.</p>
+<p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/workflow_run.PNG" class="" title="Workflow Run">
+<p>&nbsp;</p>
+
+<p>Now, if you click on the workflow run, it will take you deeper in the run and you should be able to checkout what all things are cooking inside in the run. In my case, it shows 3 jobs running, i.e.</p>
+<p><strong>1. Build and Test</strong><br><strong>2. Code Analysis</strong><br><strong>3. Test Results</strong></p>
+<p>Lets discuss about these jobs in details:</p>
+<h2 id="Build-and-Test-Job"><a href="#Build-and-Test-Job" class="headerlink" title="Build and Test Job"></a>Build and Test Job</h2><p>As mentioned earlier, this repository has the code related to web automation and we are using selenium to test the website, hence it is necessary to have the setup accordingly so our tests run successfully without any hiccups.<br>The important thing to note here is we need to have the browsers installed in the workflow machine to make our tests work.</p>
+<p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/build_test_job.PNG" class="" title="Build and Test Job">
+<p>&nbsp;</p>
+
+<p>This job performs the following steps:</p>
+<ol>
+<li>Checkout the current Repository.</li>
+</ol>
+<pre><code> - name: checkout Git repository
+   uses: actions/checkout@v2
+</code></pre>
+<ol start="2">
+<li>Install Java and Maven in the workflow machine and setup the environment to run the tests.</li>
+</ol>
+<pre><code> - name: Install Java and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: &#39;15&#39;
+          distribution: &#39;adopt&#39;
+          cache: maven
+</code></pre>
+<p>Let me talk about the next step in detail here as it is related to the end to end tests running in the pipeline. I have configured the end to end tests to run on <code>localhost</code>. The tests are related to <a target="_blank" rel="noopener" href="https://github.com/juice-shop/juice-shop">OWASP juice-shop website</a> and since its code is available on github, I decided to use it and pull the docker image and run the website locally inside the container. Github Actions has a cool feature to run the docker containers easily as its workflow machines comes bundled with <a target="_blank" rel="noopener" href="https://www.docker.com/">docker</a>. You can just type docker commands in the <code>run</code> step and it will work like a charm.</p>
+<p>So, In Step 3, I am running docker commands to pull the image of Juice Shop website and in Step 4, using <code>docker run</code>, I am running the juice shop website in detached mode so it keeps on running in background and we would be able to run the tests using <code>localhost</code>.</p>
+<ol start="3">
+<li>Pull the juice Shop docker image - This step will pull the docker image of juice-shop website which we can use in next step to run the website.</li>
+</ol>
+<pre><code> - name: Pull Juice Shop Image
+   run: docker pull bkimminich/juice-shop
+</code></pre>
+<ol start="4">
+<li>Run the Juice Shop Website using docker run - This step will run the juice shop website in detached mode and keep it running in background.</li>
+</ol>
+<pre><code> - name: Run Juice Shop
+   run: docker run -d --rm -p 3000:3000 bkimminich/juice-shop
+</code></pre>
+<ol start="5">
+<li>Install Chrome - This step will install latest chrome version inside the workflow machine.</li>
+</ol>
+<pre><code>- name: Install Chrome
+  uses: browser-actions/setup-chrome@latest
+</code></pre>
+<ol start="6">
+<li>Install Firefox - This step will install latest firefox version inside the workflow machine.</li>
+</ol>
+<pre><code>- name: Install Firefox
+  uses: browser-actions/setup-firefox@latest
+</code></pre>
+<ol start="7">
+<li>Build the Project - Here it will install all the dependencies and build the project. Note, I am not running the tests in this step as it will be done in next step.</li>
+</ol>
+<pre><code>- name: Build the Project
+  run: mvn clean install -DskipTests
+</code></pre>
+<ol start="8">
+<li>Coverage Per Test Execution</li>
+</ol>
+<pre><code>- name: Coverage per Test Execution
+  run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+</code></pre>
+<p>I have integrated Sonarqube with this repository where it performs static analysis of the code and also checks for the coverage per test in this step.</p>
+<ol start="9">
+<li>Upload Target Folder - This step uploads target folder so it could be used in further steps for generating reports.</li>
+</ol>
+<pre><code>- name: Upload target folder
+  uses: actions/upload-artifact@v2
+  with:
+    name: target
+    path: |
+      $&#123;&#123; github.workspace &#125;&#125;/target
+      $&#123;&#123; github.workspace &#125;&#125;/reports
+</code></pre>
+<p>This concludes the steps for Build and Test Job, next we move on to the next job - Code Analysis.</p>
+<h2 id="Code-Analysis-Job"><a href="#Code-Analysis-Job" class="headerlink" title="Code Analysis Job"></a>Code Analysis Job</h2><p>I have integrated this repository with <a target="_blank" rel="noopener" href="https://www.sonarqube.org/">SonarQube</a> which helps in performing static analysis of the code and helps in writing quality code and use best practices. This job will mostly focus on those steps. In this job we would again have to install everything from scratch as it is a different job. So, lets begin with the details on the step this job does, I will be skipping the setup and installation steps and fcocus on the important and unique steps in this job:</p>
+<p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/code_analysis_job.PNG" class="" title="Code Analysis Job">
+<p>&nbsp;</p>
+
+<ol>
+<li> Sonar Cloud Analysis</li>
+</ol>
+<pre><code>  - name: Sonar Code Analysis
+    env:
+      GITHUB_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;
+      SONAR_TOKEN: $&#123;&#123; secrets.SONAR_TOKEN &#125;&#125;
+      SONAR_KEY: $&#123;&#123; secrets.SONAR_KEY &#125;&#125;
+    run: |
+      mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        -Dsonar.projectKey=$SONAR_KEY
+</code></pre>
+<p>This step will perform the sonar code analysis. It requires Github Token, Sonar Token and Sonar Key for the analysis to run, I have stored these values as Github Secret and hence calling it as a variable here in this step. There are other configuration setting as well which is required for sonar code analysis which you can find in <code>pom.xml</code>.</p>
+<h2 id="Test-Report-Job"><a href="#Test-Report-Job" class="headerlink" title="Test Report Job"></a>Test Report Job</h2><p>This is the final step in the process where the summary of the tests would be taken in to account and a test report would be generated which would show the summary of the tests that ran.</p>
+<pre><code>  - name: Test Report
+    uses: dorny/test-reporter@v1
+    if: success() || failure()
+    with:
+      name: Test Results
+      path: $&#123;&#123; github.workspace &#125;&#125;/target/surefire-reports/TEST-TestSuite.xml
+      reporter: java-junit
+      java-version: 11
+</code></pre>
+<p>Checkout the Test Result image, it shows 46 tests ran successfully in 76 seconds and also provides the summary of tests and its respective test methods that were run.</p>
+<p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/test_result_job.png" class="" title="Test Report">
+<p>&nbsp;</p>
+
+<h2 id="Github-Repository"><a href="#Github-Repository" class="headerlink" title="Github Repository"></a>Github Repository</h2><p>&nbsp;</p>
+<img src="/2022/04/26/githubactions-for-java-maven-project/github_repo_selenium4poc.PNG" class="" title="Github Selenium4poc repository">
+<p>&nbsp;</p>
+
+<p>You can find all the above discussed workflow files as well as other configuration settings in this <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/selenium4poc">github repository</a>.<br>Do mark a ⭐ and make the project popular so it reaches to the people who want to learn and upgrade.</p>
+<p>Please ping me in case you need any assistance or if you have any query.<br>Happy Learning!!</p>
+<p>&nbsp;</p>
+
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
