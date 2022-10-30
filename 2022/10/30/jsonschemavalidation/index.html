@@ -1,0 +1,567 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta charset="UTF-8"><title>How to perform JSON Schema Validation using Rest-Assured? | Faisal Khatri</title><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato|Source+Sans+Pro&display=swap" rel="stylesheet"><!-- Global site tag (gtag.js) - Google Analytics--><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168029981-1">   </script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-168029981-1');</script><!--Google Ad Sense Script--><script data-ad-client="ca-pub-3567405113571409" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--End of Google Ad Sense script--><!-- Start of Tawk.to Script--><script type="text/javascript">var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c2368327a79fc1bddf2463e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();</script><!-- End of Tawk.to Script--><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=inline-share-buttons" async="async"></script><script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5c24c366f6809e0011a91fd0&amp;product=sticky-share-buttons" async="async"></script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="layout-page"><nav id="layout-menu"><div class="other-page hide"><a href="/about">About</a><a href="/archives">Blogs</a></div><div class="responsive-pad"></div><div id="mega-head"><a href="/">Faisal Khatri</a></div><div class="layout-socialmedia hide"><a class="link-item main-link-item" title="Medium" target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri"><i class="iconfont icon-medium"></i></a><a class="link-item main-link-item" title="Twitter" target="_blank" rel="noopener" href="https://twitter.com/mfaisal_khatri"><i class="iconfont icon-twitter"></i></a><a class="link-item main-link-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri"><i class="iconfont icon-github"></i></a><a class="link-item main-link-item" title="LinkedIn" target="_blank" rel="noopener" href="https://www.linkedin.com/in/faisalkhatri/"><i class="iconfont icon-linkedin"></i></a><a class="link-item main-link-item" title="YouTube" target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCZ2Qyl9lCZdrFdzuMk3TLVQ"><i class="iconfont icon-youtube"></i></a></div><div class="responsive-bar" onclick="toggle(this)">≡</div></nav><div id="content"><article id="post"><h1>How to perform JSON Schema Validation using Rest-Assured?</h1><time class="created-date" datetime="2022-10-30T06:21:36.000Z">2022-10-30</time><div class="sharethis-inline-share-buttons"></div><p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/cover_image.png" class="" title="Cover Image">
+<p>&nbsp;</p>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Have you ever come across a situation in automated API testing where you were not able to identify the issue in the test failure and after debugging for almost multiple hours, finally you ended you noticing that the data type of the value supplied in the response of the API has actually changed and it is the core reason for the test failure!</p>
+<p>This type of scenarios can generally happen when you have Third Party APIs integrated in your application. Real time example for such scenario would be integrating with the Bank APIs for making payment for your e-commerce application or may be integrating with Third Party API which provides the registration and login functionality using Two Factor Authentication.</p>
+<p>In such a situation, though you would be provided with a detailed documentation of the APIs and functionality, however, it happens that there is a change in the API response from the Third Party application since they cater to multiple clients and might have updated their API, may be for a bug fix or a new feature requirement which you are unaware of.</p>
+<p>It is possible that one of the data type of the field received in response is changed to integer from String or vice-versa. Or there is a new field/Object added in the response.Thanks to JSON Schema Validation, these changes can now be caught easily and can save lot of your efforts and time in debugging and finding the issue which leads to the failure of your system.</p>
+<p>Before we begin with discussing the JSON Schema validation, let’s first understand what JSON is, and then continue with the JSON Schema Validation.</p>
+<h2 id="What-is-JSON"><a href="#What-is-JSON" class="headerlink" title="What is JSON?"></a>What is JSON?</h2><p>JSON stands for JavaScript Object Notation. It was originally specified by <a target="_blank" rel="noopener" href="https://www.crockford.com/alphabet.html">Douglas Crockford</a>. It is a lightweight format for storing and transporting data and often used when data is sent from server to webpages. It is self describing and easy to understand.</p>
+<p>The following are important syntax rules for JSON:</p>
+<ul>
+<li>Data is in name/value pairs.</li>
+<li>Data is separated by commas.</li>
+<li>Curly braces hold objects.</li>
+<li>Square brackets hold arrays.</li>
+</ul>
+<p>To understand further, let’s take the following JSON file as an example:</p>
+<pre><code class="json">&#123;
+    &quot;page&quot;: 1,
+    &quot;total_pages&quot;: 2,
+    &quot;employee_data&quot;: [
+        &#123;
+            &quot;id&quot;: 5,
+            &quot;first_name&quot;: &quot;Michael&quot;,
+            &quot;last_name&quot;: &quot;Doe&quot;,
+            &quot;designation&quot;: &quot;QA&quot;,
+            &quot;location&quot;: &quot;Remote&quot;
+        &#125;,
+        &#123;
+            &quot;id&quot;: 6,
+            &quot;first_name&quot;: &quot;Johnny&quot;,
+            &quot;last_name&quot;: &quot;Ford&quot;,
+            &quot;designation&quot;: &quot;QA&quot;,
+            &quot;location&quot;: &quot;NY,US&quot;
+        &#125;
+    ],
+    &quot;company&quot;: &#123;
+        &quot;name&quot;: &quot;QA Inc&quot;,
+        &quot;Address&quot;: &quot;New Jersey, US&quot;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="Understanding-the-JSON-File"><a href="#Understanding-the-JSON-File" class="headerlink" title="Understanding the JSON File:"></a>Understanding the JSON File:</h3><p>The above mentioned file begins with a curly brace <code>&#123;</code> which means the file holds JSON object. Inside the JSON object, data is stored in multiple data types as follows:</p>
+<p>The above mentioned file begins with a curly brace {which means the file holds JSON object. Inside the JSON object, data is stored in multiple data types as follows:</p>
+<p><strong>1. Root level itself is JSON Object as it has curly bracket to start with and has data is stored in key/value pair :</strong></p>
+<pre><code class="json">&#123;
+    &quot;page&quot;: 1,
+    &quot;total_pages&quot;: 2
+&#125;
+</code></pre>
+<p><strong>2. JSON Array</strong></p>
+<p>JSON Array stores data inside the JSON file in a block with square bracket <code>[]</code>. If we take the example of the JSON file mentioned above, <code>employee_data</code> JSON array has 2 JSON Objects inside it.</p>
+<pre><code class="json">&quot;employee_data&quot;: [&#123;
+   &quot;id&quot;: 5,
+   &quot;first_name&quot;: &quot;Michael&quot;,
+   &quot;last_name&quot;: &quot;Doe&quot;,
+   &quot;designation&quot;: &quot;QA&quot;,
+   &quot;location&quot;: &quot;Remote&quot;
+  &#125;,
+  &#123;
+   &quot;id&quot;: 6,
+   &quot;first_name&quot;: &quot;Johnny&quot;,
+   &quot;last_name&quot;: &quot;Ford&quot;,
+   &quot;designation&quot;: &quot;QA&quot;,
+   &quot;location&quot;: &quot;NY,US&quot;
+  &#125;
+ ]
+</code></pre>
+<p><strong>3. JSON Object.</strong><br>As mentioned earlier, data stored within curly braces are JSON Objects and has multiple key/value pairs in it.</p>
+<p><code>company</code> JSON Object holds the data for company details:</p>
+<pre><code class="json">&quot;company&quot;: &#123;
+  &quot;name&quot;: &quot;QA Inc&quot;,
+  &quot;Address&quot;: &quot;New Jersey, US&quot;
+ &#125;
+</code></pre>
+<p>It can also be referred as <code>company</code> <em>key</em> holding the company details record in its value.</p>
+<h2 id="What-is-JSON-Schema"><a href="#What-is-JSON-Schema" class="headerlink" title="What is JSON Schema?"></a>What is JSON Schema?</h2><p>JSON Schema is a specification for JSON based format for defining the structure of JSON data. It was written under IETF draft which expired in 2011.</p>
+<p>JSON Schema helps us in describing the existing data format and providing clear, human and machine readable documentation.</p>
+<p>As JSON Schema provides complete structural validation, it helps in automated tests and also validating the client-submitted data for verification.</p>
+<h2 id="How-do-I-generate-JSON-Schema-for-the-JSON-Request-of-an-API"><a href="#How-do-I-generate-JSON-Schema-for-the-JSON-Request-of-an-API" class="headerlink" title="How do I generate JSON Schema for the JSON Request of an API?"></a>How do I generate JSON Schema for the JSON Request of an API?</h2><p>Consider the following example of <a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking">Post Response from restful-booker website</a> where the following data is returned in response once user hits the post API for creating a new booking:</p>
+<pre><code class="json">&#123;
+    &quot;bookingid&quot;: 1,
+    &quot;booking&quot;: &#123;
+        &quot;firstname&quot;: &quot;Jim&quot;,
+        &quot;lastname&quot;: &quot;Brown&quot;,
+        &quot;totalprice&quot;: 111,
+        &quot;depositpaid&quot;: true,
+        &quot;bookingdates&quot;: &#123;
+            &quot;checkin&quot;: &quot;2018-01-01&quot;,
+            &quot;checkout&quot;: &quot;2019-01-01&quot;
+        &#125;,
+        &quot;additionalneeds&quot;: &quot;Breakfast&quot;
+    &#125;
+&#125;
+</code></pre>
+<p>To generate the JSON Schema, we would be using an <a target="_blank" rel="noopener" href="https://extendsclass.com/json-schema-validator.html">online JSON schema generator tool from extendsclass.com</a>. Using this tool is very simple, you just need to copy paste the JSON data for which you need to generate the JSON schema and click on the <code>Generate Schema from JSON</code> button on the web page and it will provide you with the JSON schema for the respective JSON data provided.</p>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/extendclass_website.png" class="" title="Extend Class Website">
+<p>&nbsp;</p>
+
+<p>Here is the JSON Schema generated for the above JSON data for creating a new booking:</p>
+<pre><code class="json">&#123;
+    &quot;definitions&quot;: &#123;&#125;,
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-07/schema#&quot;,
+    &quot;$id&quot;: &quot;https://example.com/object1661496173.json&quot;,
+    &quot;title&quot;: &quot;Root&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;required&quot;: [&quot;bookingid&quot;, &quot;booking&quot;],
+    &quot;properties&quot;: &#123;
+        &quot;bookingid&quot;: &#123;
+            &quot;$id&quot;: &quot;#root/bookingid&quot;,
+            &quot;title&quot;: &quot;Bookingid&quot;,
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;examples&quot;: [1],
+            &quot;default&quot;: 0
+        &#125;,
+        &quot;booking&quot;: &#123;
+            &quot;$id&quot;: &quot;#root/booking&quot;,
+            &quot;title&quot;: &quot;Booking&quot;,
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;required&quot;: [
+                &quot;firstname&quot;,
+                &quot;lastname&quot;,
+                &quot;totalprice&quot;,
+                &quot;depositpaid&quot;,
+                &quot;bookingdates&quot;,
+                &quot;additionalneeds&quot;
+            ],
+            &quot;properties&quot;: &#123;
+                &quot;firstname&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/firstname&quot;,
+                    &quot;title&quot;: &quot;Firstname&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;default&quot;: &quot;&quot;,
+                    &quot;examples&quot;: [&quot;Jim&quot;],
+                    &quot;pattern&quot;: &quot;^.*$&quot;
+                &#125;,
+                &quot;lastname&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/lastname&quot;,
+                    &quot;title&quot;: &quot;Lastname&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;default&quot;: &quot;&quot;,
+                    &quot;examples&quot;: [&quot;Brown&quot;],
+                    &quot;pattern&quot;: &quot;^.*$&quot;
+                &#125;,
+                &quot;totalprice&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/totalprice&quot;,
+                    &quot;title&quot;: &quot;Totalprice&quot;,
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;examples&quot;: [111],
+                    &quot;default&quot;: 0
+                &#125;,
+                &quot;depositpaid&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/depositpaid&quot;,
+                    &quot;title&quot;: &quot;Depositpaid&quot;,
+                    &quot;type&quot;: &quot;boolean&quot;,
+                    &quot;examples&quot;: [true],
+                    &quot;default&quot;: true
+                &#125;,
+                &quot;bookingdates&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/bookingdates&quot;,
+                    &quot;title&quot;: &quot;Bookingdates&quot;,
+                    &quot;type&quot;: &quot;object&quot;,
+                    &quot;required&quot;: [&quot;checkin&quot;, &quot;checkout&quot;],
+                    &quot;properties&quot;: &#123;
+                        &quot;checkin&quot;: &#123;
+                            &quot;$id&quot;: &quot;#root/booking/bookingdates/checkin&quot;,
+                            &quot;title&quot;: &quot;Checkin&quot;,
+                            &quot;type&quot;: &quot;string&quot;,
+                            &quot;default&quot;: &quot;&quot;,
+                            &quot;examples&quot;: [&quot;2018-01-01&quot;],
+                            &quot;pattern&quot;: &quot;^.*$&quot;
+                        &#125;,
+                        &quot;checkout&quot;: &#123;
+                            &quot;$id&quot;: &quot;#root/booking/bookingdates/checkout&quot;,
+                            &quot;title&quot;: &quot;Checkout&quot;,
+                            &quot;type&quot;: &quot;string&quot;,
+                            &quot;default&quot;: &quot;&quot;,
+                            &quot;examples&quot;: [&quot;2019-01-01&quot;],
+                            &quot;pattern&quot;: &quot;^.*$&quot;
+                        &#125;
+                    &#125;
+                &#125;,
+                &quot;additionalneeds&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/additionalneeds&quot;,
+                    &quot;title&quot;: &quot;Additionalneeds&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;default&quot;: &quot;&quot;,
+                    &quot;examples&quot;: [&quot;Breakfast&quot;],
+                    &quot;pattern&quot;: &quot;^.*$&quot;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="Understanding-the-JSON-Schema"><a href="#Understanding-the-JSON-Schema" class="headerlink" title="Understanding the JSON Schema"></a>Understanding the JSON Schema</h3><p>If you check the JSON data, following two fields are main records:</p>
+<ul>
+<li><code>bookingid</code></li>
+<li>Object of <code>booking</code> data</li>
+</ul>
+<p>The following block generated in JSON Schema talks about these 2 fields that in root, these two fields are required as an <code>Object</code> type.</p>
+<pre><code class="json">&quot;title&quot;: &quot;Root&quot;,
+&quot;type&quot;: &quot;object&quot;,
+ &quot;required&quot;: [
+  &quot;bookingid&quot;,
+  &quot;booking&quot;
+ ],
+</code></pre>
+<p>Next, let’s talk about the <code>properties</code> block inside the JSON Schema. The following block states that <code>bookingid</code> should be in root object and its type should be <code>integer</code>. Hence, in response it is expected that value in this field should be an <strong><em>integer</em></strong> only. So, in case if this type is changed to any other data type like <code>String</code>, <code>Object</code>, <code>long</code> or <code>float</code>, schema validation will fail and we would be able to identify the issue in the schema right away.</p>
+<pre><code class="json">&quot;properties&quot;: &#123;
+  &quot;bookingid&quot;: &#123;
+   &quot;$id&quot;: &quot;#root/bookingid&quot;,
+   &quot;title&quot;: &quot;Bookingid&quot;,
+   &quot;type&quot;: &quot;integer&quot;,
+   &quot;examples&quot;: [
+    1
+   ],
+   &quot;default&quot;: 0
+  &#125;,
+  &quot;booking&quot;: &#123;
+   &quot;$id&quot;: &quot;#root/booking&quot;,
+   &quot;title&quot;: &quot;Booking&quot;,
+   &quot;type&quot;: &quot;object&quot;,
+   &quot;required&quot;: [
+    &quot;firstname&quot;,
+    &quot;lastname&quot;,
+    &quot;totalprice&quot;,
+    &quot;depositpaid&quot;,
+    &quot;bookingdates&quot;,
+    &quot;additionalneeds&quot;
+   ],
+   &quot;properties&quot;: &#123;
+    &quot;firstname&quot;: &#123;
+     &quot;$id&quot;: &quot;#root/booking/firstname&quot;,
+     &quot;title&quot;: &quot;Firstname&quot;,
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;default&quot;: &quot;&quot;,
+     &quot;examples&quot;: [
+      &quot;Jim&quot;
+     ],
+     &quot;pattern&quot;: &quot;^.*$&quot;
+    &#125;,
+    &quot;lastname&quot;: &#123;
+     &quot;$id&quot;: &quot;#root/booking/lastname&quot;,
+     &quot;title&quot;: &quot;Lastname&quot;,
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;default&quot;: &quot;&quot;,
+     &quot;examples&quot;: [
+      &quot;Brown&quot;
+     ],
+     &quot;pattern&quot;: &quot;^.*$&quot;
+    &#125;,
+    &quot;totalprice&quot;: &#123;
+     &quot;$id&quot;: &quot;#root/booking/totalprice&quot;,
+     &quot;title&quot;: &quot;Totalprice&quot;,
+     &quot;type&quot;: &quot;integer&quot;,
+     &quot;examples&quot;: [
+      111
+     ],
+     &quot;default&quot;: 0
+    &#125;,
+    &quot;depositpaid&quot;: &#123;
+     &quot;$id&quot;: &quot;#root/booking/depositpaid&quot;,
+     &quot;title&quot;: &quot;Depositpaid&quot;,
+     &quot;type&quot;: &quot;boolean&quot;,
+     &quot;examples&quot;: [
+      true
+     ],
+     &quot;default&quot;: true
+    &#125;,
+    &quot;bookingdates&quot;: &#123;
+     &quot;$id&quot;: &quot;#root/booking/bookingdates&quot;,
+     &quot;title&quot;: &quot;Bookingdates&quot;,
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;required&quot;: [
+      &quot;checkin&quot;,
+      &quot;checkout&quot;
+     ],
+     &quot;properties&quot;: &#123;
+      &quot;checkin&quot;: &#123;
+       &quot;$id&quot;: &quot;#root/booking/bookingdates/checkin&quot;,
+       &quot;title&quot;: &quot;Checkin&quot;,
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;default&quot;: &quot;&quot;,
+       &quot;examples&quot;: [
+        &quot;2018-01-01&quot;
+       ],
+       &quot;pattern&quot;: &quot;^.*$&quot;
+      &#125;,
+      &quot;checkout&quot;: &#123;
+       &quot;$id&quot;: &quot;#root/booking/bookingdates/checkout&quot;,
+       &quot;title&quot;: &quot;Checkout&quot;,
+       &quot;type&quot;: &quot;string&quot;,
+       &quot;default&quot;: &quot;&quot;,
+       &quot;examples&quot;: [
+        &quot;2019-01-01&quot;
+       ],
+       &quot;pattern&quot;: &quot;^.*$&quot;
+      &#125;
+     &#125;
+    &#125;
+,
+    &quot;additionalneeds&quot;: &#123;
+     &quot;$id&quot;: &quot;#root/booking/additionalneeds&quot;,
+     &quot;title&quot;: &quot;Additionalneeds&quot;,
+     &quot;type&quot;: &quot;string&quot;,
+     &quot;default&quot;: &quot;&quot;,
+     &quot;examples&quot;: [
+      &quot;Breakfast&quot;
+     ],
+     &quot;pattern&quot;: &quot;^.*$&quot;
+    &#125;
+   &#125;
+  &#125;
+&#125;
+</code></pre>
+<p>Likewise, you can notice the data types and required field values mentioned for the other fields in the JSON Schema.</p>
+<h2 id="Performing-the-JSON-Schema-validation-using-Rest-Assured"><a href="#Performing-the-JSON-Schema-validation-using-Rest-Assured" class="headerlink" title="Performing the JSON Schema validation using Rest-Assured"></a>Performing the JSON Schema validation using Rest-Assured</h2><h3 id="What-is-rest-assured"><a href="#What-is-rest-assured" class="headerlink" title="What is rest-assured?"></a>What is rest-assured?</h3><p><a target="_blank" rel="noopener" href="https://rest-assured.io/">REST-Assured</a> is a Java library that provides a domain-specific language (DSL) for writing powerful, maintainable tests for RESTful APIs. One thing I really like about rest-assured is its BDD style of writing tests and one can read the tests very easily in a human readable language.</p>
+<h4 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h4><p>The project is created using <strong>Maven</strong>. Once the project is created we need to add the dependency for rest-assured in <code>pom.xml</code> file. <strong>TestNG</strong> is used as test runner.</p>
+<p>Following dependencies are mandatorily required to be added in <code>pom.xml</code></p>
+<ul>
+<li><code>rest-assured</code> dependency is required for running the API tests</li>
+<li><code>json-schema-validator</code> dependency is required for validating the JSON Schema.</li>
+</ul>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/pom_dependency.png" class="" title="Dependencies in Pom.xml">
+<p>&nbsp;</p>
+
+<p>The versions of these dependencies have been added in the <code>properties block</code> inside the <code>pom.xml</code> as it is best practice and helps in maintaining the versions with ease as all versions are available at one place.</p>
+<p>Checkout my previous blog <a target="_blank" rel="noopener" href="https://medium.com/@iamfaisalkhatri/end-to-end-api-testing-using-rest-assured-a58c4ea80255">writing end to end tests using rest-assured</a> to get more insights about how to write tests using rest-assured framework.</p>
+<h3 id="Github-Repository"><a href="#Github-Repository" class="headerlink" title="Github Repository"></a>Github Repository</h3><p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/rest_assured_examples_repo.png" class="" title="Github repository">
+<p>&nbsp;</p>
+
+<p>All of the code which is showcased in this blog is available in this <a target="_blank" rel="noopener" href="https://github.com/mfaisalkhatri/rest-assured-examples">github repository</a>.</p>
+<p>Do mark a ⭐ and make the project popular so it reaches to the people who want to learn and upgrade and get better understanding about API Test Automation using rest-assured.</p>
+<h2 id="Validating-the-JSON-Schema"><a href="#Validating-the-JSON-Schema" class="headerlink" title="Validating the JSON Schema"></a>Validating the JSON Schema</h2><p><strong>Step 1:</strong> First of all, we need to generate the JSON Schema for the response JSON data which we need to validate.</p>
+<p>As we are using the restful-booker create booking API, we would be copy pasting the JSON response and generate the JSON schema using the <a target="_blank" rel="noopener" href="https://extendsclass.com/json-schema-validator.html">JSON Schema Validator</a>.</p>
+<p>In the screenshot below, on the left hand side we have the JSON response. On clicking the <code>Generate Schema from JSON button</code>, JSON Schema would be generated on the right hand section.</p>
+<p><a target="_blank" rel="noopener" href="https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking">Response received from Create booking API in restful-booker</a></p>
+<pre><code class="json">&#123;
+    &quot;bookingid&quot;: 1,
+    &quot;booking&quot;: &#123;
+        &quot;firstname&quot;: &quot;Jim&quot;,
+        &quot;lastname&quot;: &quot;Brown&quot;,
+        &quot;totalprice&quot;: 111,
+        &quot;depositpaid&quot;: true,
+        &quot;bookingdates&quot;: &#123;
+            &quot;checkin&quot;: &quot;2018-01-01&quot;,
+            &quot;checkout&quot;: &quot;2019-01-01&quot;
+        &#125;,
+        &quot;additionalneeds&quot;: &quot;Breakfast&quot;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>JSON Schema for the above response:</strong></p>
+<pre><code class="json">&#123;
+    &quot;definitions&quot;: &#123;&#125;,
+    &quot;$schema&quot;: &quot;http://json-schema.org/draft-07/schema#&quot;,
+    &quot;$id&quot;: &quot;https://example.com/object1661586892.json&quot;,
+    &quot;title&quot;: &quot;Root&quot;,
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;required&quot;: [&quot;bookingid&quot;, &quot;booking&quot;],
+    &quot;properties&quot;: &#123;
+        &quot;bookingid&quot;: &#123;
+            &quot;$id&quot;: &quot;#root/bookingid&quot;,
+            &quot;title&quot;: &quot;Bookingid&quot;,
+            &quot;type&quot;: &quot;integer&quot;,
+            &quot;examples&quot;: [1],
+            &quot;default&quot;: 0
+        &#125;,
+        &quot;booking&quot;: &#123;
+            &quot;$id&quot;: &quot;#root/booking&quot;,
+            &quot;title&quot;: &quot;Booking&quot;,
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;required&quot;: [
+                &quot;firstname&quot;,
+                &quot;lastname&quot;,
+                &quot;totalprice&quot;,
+                &quot;depositpaid&quot;,
+                &quot;bookingdates&quot;,
+                &quot;additionalneeds&quot;
+            ],
+            &quot;properties&quot;: &#123;
+                &quot;firstname&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/firstname&quot;,
+                    &quot;title&quot;: &quot;Firstname&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;default&quot;: &quot;&quot;,
+                    &quot;examples&quot;: [&quot;Jim&quot;],
+                    &quot;pattern&quot;: &quot;^.*$&quot;
+                &#125;,
+                &quot;lastname&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/lastname&quot;,
+                    &quot;title&quot;: &quot;Lastname&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;default&quot;: &quot;&quot;,
+                    &quot;examples&quot;: [&quot;Brown&quot;],
+                    &quot;pattern&quot;: &quot;^.*$&quot;
+                &#125;,
+                &quot;totalprice&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/totalprice&quot;,
+                    &quot;title&quot;: &quot;Totalprice&quot;,
+                    &quot;type&quot;: &quot;integer&quot;,
+                    &quot;examples&quot;: [111],
+                    &quot;default&quot;: 0
+                &#125;,
+                &quot;depositpaid&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/depositpaid&quot;,
+                    &quot;title&quot;: &quot;Depositpaid&quot;,
+                    &quot;type&quot;: &quot;boolean&quot;,
+                    &quot;examples&quot;: [true],
+                    &quot;default&quot;: true
+                &#125;,
+                &quot;bookingdates&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/bookingdates&quot;,
+                    &quot;title&quot;: &quot;Bookingdates&quot;,
+                    &quot;type&quot;: &quot;object&quot;,
+                    &quot;required&quot;: [&quot;checkin&quot;, &quot;checkout&quot;],
+                    &quot;properties&quot;: &#123;
+                        &quot;checkin&quot;: &#123;
+                            &quot;$id&quot;: &quot;#root/booking/bookingdates/checkin&quot;,
+                            &quot;title&quot;: &quot;Checkin&quot;,
+                            &quot;type&quot;: &quot;string&quot;,
+                            &quot;default&quot;: &quot;&quot;,
+                            &quot;examples&quot;: [&quot;2018-01-01&quot;],
+                            &quot;pattern&quot;: &quot;^.*$&quot;
+                        &#125;,
+                        &quot;checkout&quot;: &#123;
+                            &quot;$id&quot;: &quot;#root/booking/bookingdates/checkout&quot;,
+                            &quot;title&quot;: &quot;Checkout&quot;,
+                            &quot;type&quot;: &quot;string&quot;,
+                            &quot;default&quot;: &quot;&quot;,
+                            &quot;examples&quot;: [&quot;2019-01-01&quot;],
+                            &quot;pattern&quot;: &quot;^.*$&quot;
+                        &#125;
+                    &#125;
+                &#125;,
+                &quot;additionalneeds&quot;: &#123;
+                    &quot;$id&quot;: &quot;#root/booking/additionalneeds&quot;,
+                    &quot;title&quot;: &quot;Additionalneeds&quot;,
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;default&quot;: &quot;&quot;,
+                    &quot;examples&quot;: [&quot;Breakfast&quot;],
+                    &quot;pattern&quot;: &quot;^.*$&quot;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>Project folder structure</strong></p>
+<p>We can copy the JSON Schema and create a new JSON file and put it in the <code>src\test\resources</code> folder inside the project.</p>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/project_structure.png" class="" title="Project structure">
+<p>&nbsp;</p>
+
+<p><strong>Writing JSON Schema Validation test</strong></p>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/json_schema_validation_test.png" class="" title="JSON Schema validation">
+<p>&nbsp;</p>
+
+<p>If you have used rest-assured previously it is going to be very easy for you to write the JSON Schema validation test.</p>
+<p>We need to write the assertion for validating the JSON Schema inside the <strong><em>body()</em></strong> method after the <strong><em>assertThat()</em></strong> method. But before we move to the assertion, we need to read the JSON file we posted inside the <code>src\test\resources</code> folder. For doing that we would be using the InputStream class. The following line of code will help us in reading the JSON Schema file <code>createbookingjsonschema.json</code></p>
+<pre><code>InputStream createBookingJsonSchema = getClass ().getClassLoader ()
+    .getResourceAsStream (&quot;createbookingjsonschema.json&quot;);
+</code></pre>
+<p>Next, we need to hit the post API and check the JSON Schema in response<br>by using <code>JsonSchemaValidator.matchesJsonSchema()</code> method and pass the <code>createBookingJsonSchema</code> <em>InputStream instance</em> in it.</p>
+<p>The following lines of code will help us in validating the JSON Schema in the response. Interpreting the lines of code given below, we are sending a post request with the body as required for Post API after which we are checking the status code returned in response is 200 and that the body has the JSON Schema as provided in the <em>createBookingJsonSchema instance.</em></p>
+<pre><code class="java">given ().body (newBooking)
+    .when ()
+    .post (&quot;/booking&quot;)
+    .then ()
+    .statusCode (200)
+    .and()
+    .assertThat ()
+    .body (JsonSchemaValidator.matchesJsonSchema (createBookingJsonSchema));
+</code></pre>
+<p><strong>Running the Tests</strong><br>It’s time now to run the test and check of the Schema validation happens correctly. Here is the snippet of <code>testng.xml</code> file.</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Restful Booker Test Suite&quot;&gt;
+    &lt;test name=&quot;Restful Booker JSON Schema Validation tests&quot;&gt;
+        &lt;classes&gt;
+           &lt;class name=&quot;com.restfulbooker.JsonSchemaValidationTest&quot;&gt;
+                &lt;methods&gt;
+                    &lt;include name=&quot;testCreateBookingJsonSchema&quot;/&gt;
+                &lt;/methods&gt;
+            &lt;/class&gt;
+        &lt;/classes&gt;
+    &lt;/test&gt;
+&lt;/suite&gt; &lt;!-- Suite --&gt;
+</code></pre>
+<p>Let’s run the tests now and validate the JSON Schema. We would be running the tests using TestNG by right clicking on the <code>testng.xml</code> file.</p>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/run_testng.png" class="" title="Running tests using TestNG.xml">
+<p>&nbsp;</p>
+
+<p>Tests passed successfully as the JSON Schema received in the Response matches with the JSON Schema provided in the <code>src\test\resources</code> folder.</p>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/testng_run_summary.png" class="" title="TestNG run summary">
+<p>&nbsp;</p>
+
+<p>Now, let’s make some changes in the JSON Schema in the createbookingjsonschema.json file provided in the <code>src\test\resources</code></p>
+<p>In <code>bookingid</code> field, value of type <strong><em>integer</em></strong> is required however it has been updated to <strong><em>string</em></strong> just to check if the validation is actually working fine.</p>
+<pre><code class="json">&quot;properties&quot;: &#123;
+  &quot;bookingid&quot;: &#123;
+    &quot;$id&quot;: &quot;#root/bookingid&quot;,
+    &quot;title&quot;: &quot;Bookingid&quot;,
+    &quot;type&quot;: &quot;string&quot;,
+    &quot;examples&quot;: [
+      1
+    ],
+    &quot;default&quot;: 0
+  &#125;,
+</code></pre>
+<p>Let’s run the test again by right clicking on the <code>testng.xml</code> file.</p>
+<p>&nbsp;</p>
+<img src="/2022/10/30/jsonschemavalidation/testng_failure_invalidjsonschema.png" class="" title="Test failure due to invalid json schema">
+<p>&nbsp;</p>
+
+<p>Following error log was generated and displayed in the console, which says that value received in response was an <strong>integer</strong> whereas value expected was <strong>string</strong>.</p>
+<pre><code class="log">error: instance type (integer) does not match any allowed primitive type (allowed: [&quot;string&quot;])
+    level: &quot;error&quot;
+    schema: &#123;&quot;loadingURI&quot;:&quot;#&quot;,&quot;pointer&quot;:&quot;/properties/bookingid&quot;&#125;
+    instance: &#123;&quot;pointer&quot;:&quot;/bookingid&quot;&#125;
+    domain: &quot;validation&quot;
+    keyword: &quot;type&quot;
+    found: &quot;integer&quot;
+    expected: [&quot;string&quot;]
+</code></pre>
+<p>You See! How easy it is to identify the such kind of Schema related errors which if not done could have taken lot of your efforts as well as time to find it.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>In this blog, we went through discussing What is JSON, what are its different Syntax Rule and finally performed the JSON Schema Validation using Rest-Assured framework. I hope you get better vision on performing JSON Schema validation by reading this post.</p>
+<p>Happy Testing!</p>
+<blockquote>
+<h2 id="Paid-Trainings"><a href="#Paid-Trainings" class="headerlink" title="Paid Trainings"></a>Paid Trainings</h2><p>Contact me for Paid trainings related to Test Automation and Software Testing, ping me <a target="_blank" rel="noopener" href="https://linktr.ee/faisalkhatri">here</a></p>
+</blockquote>
+<div id="paginator"></div><div id="disqus_thread"><script>/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mfaisalkhatri-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();</script><noscript><a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript"> </a></noscript></div></article></div><footer id="bottom"><span>© </span><span>Faisal Khatri</span><span>. Powered By </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>HEXO</span></a><span>. Theme </span><a target="_blank" rel="noopener" href="https://github.com/lixuetaoleo/hexo-theme-leo">leo</a></footer></div><script src="/js/style.js"></script><script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script></body></html>
